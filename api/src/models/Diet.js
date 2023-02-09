@@ -2,12 +2,11 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define('diet', {
-    id: {
-      type: DataTypes.INTEGER,
-      unique: true,
-      allowNull: false,
-      primaryKey: true,
-    },
+    // id: {
+    //   type: DataTypes.INTEGER,
+    //   primaryKey: true,
+    //   autoIncrement: true,
+    // },
     title: {
       type: DataTypes.STRING,
     },
