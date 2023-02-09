@@ -28,7 +28,7 @@ async function searchAPI() {
     .get(
       `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
     )
-    .then((response) => (recipe = response.data.results))
+    .then((response) => (recipe = response.data.results));
 
   return recipe;
 }
