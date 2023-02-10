@@ -5,6 +5,7 @@ const { Recipe, Diet } = require("../db");
 async function createRecipe({
   title,
   summary,
+  image,
   healthScore,
   instructions,
   diets,
@@ -12,6 +13,7 @@ async function createRecipe({
   let resultado = await Recipe.create({
     title,
     summary,
+    image,
     healthScore,
     instructions,
   });
@@ -26,16 +28,7 @@ async function createRecipe({
     await resultado.addDiet(dieta);
   }
 
-  let algo = await Recipe.findOne({
-    where: {
-      title: title,
-    },
-    include: {
-      model: Diet,
-      attributes: ["title"],
-      through: { attributes: [] },
-    },
-  });
+
 
 }
 

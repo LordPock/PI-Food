@@ -1,36 +1,48 @@
 require("dotenv").config();
 const axios = require("axios");
 const { Op } = require("sequelize");
-const { Recipe } = require("../db");
+const { Recipe, Diet } = require("../db");
 const { API_KEY } = process.env;
 
 var recipe = [];
 
 async function searchId(id) {
-  if (id) {
-    const resultAPI = await searchIdAPI(id);
-    const resultDB = await searchIdDB(id);
-    recipe = await resultDB.concat(resultAPI);
-    if (recipe.length === 0) throw new Error(`No existen recetas con ID ${id}`);
-    return recipe;
+  let buscar = id.includes("-");
+
+  if (!buscar) {
+    await axios
+      .get(
+        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+      )
+      .then((response) => (recipe = response.data));
+    let receta = {
+      title: recipe.title,
+      image: recipe.image,
+      dishTypes: recipe.dishTypes,
+      diets: recipe.diets,
+      summary: recipe.summary,
+      instructions: recipe.instructions,
+      healthScore: recipe.healthScore,
+    };
+    if (recipe?.length === 0)
+      throw new Error(`No existen recetas con ID ${id}`);
+
+    return receta;
   } else {
-    throw new Error("No se envió in ID válido");
+    let resultado = await Recipe.findOne({
+      where: {
+        id: id,
+      },
+      include: {
+        model: Diet,
+        attributes: ["title"],
+        through: { attributes: [] },
+      },
+    });
+    if (!resultado)
+      throw new Error(`No existen recetas con ID ${id}`);
+    return resultado;
   }
 }
 
-async function searchIdAPI(id) {
-  await axios
-    .get(
-      `https://api.spoonacular.com/recipes/${id}/information&apiKey=${API_KEY}`
-    )
-    .then((response) => (recipe = response.data.results));
-
-  return recipe;
-}
-
-async function searchIdDB(id) {
-  let resultado = await Recipe.findByPk(id);
-  return resultado;
-}
-
-module.exports = { searchId, searchIdAPI, searchIdDB };
+module.exports = { searchId };

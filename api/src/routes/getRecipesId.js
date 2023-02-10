@@ -6,10 +6,12 @@ const express = require("express");
 const router = Router();
 router.use(express.json());
 
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
+  
   let { id } = req.params;
-
+  
   try {
+    if (id.includes('-') && id.length !== 36) throw new Error('El ID es inválido')
     let resultado = await searchId(id);
     res.status(200).json({ resultado });
   } catch (error) {

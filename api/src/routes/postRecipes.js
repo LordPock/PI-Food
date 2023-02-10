@@ -6,12 +6,13 @@ const router = Router();
 router.use(express.json());
 
 router.post("/", async (req, res) => {
-  let { title, summary, healthScore, instructions, diets } = req.body;
+  let { title, summary, image, healthScore, instructions, diets } = req.body;
 
   try {
     let resultado = await createRecipe({
       title,
       summary,
+      image,
       healthScore,
       instructions,
       diets
