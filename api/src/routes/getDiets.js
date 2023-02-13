@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   
   try {
     let resultado = await allDiets();
-    res.status(200).json({ resultado });
+    res.status(200).json( resultado );
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

@@ -10,6 +10,9 @@ async function createRecipe({
   instructions,
   diets,
 }) {
+
+  if (!title || !summary) throw new Error('El título y el resumen deben estar completos')
+  
   let resultado = await Recipe.create({
     title,
     summary,

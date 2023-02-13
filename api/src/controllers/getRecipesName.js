@@ -26,7 +26,7 @@ async function search(name) {
 async function searchAPI() {
   await axios
     .get(
-      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/complexSearch?number=2&addRecipeInformation=true&apiKey=${API_KEY}`
     )
     .then((response) => (recipe = response.data.results));
 

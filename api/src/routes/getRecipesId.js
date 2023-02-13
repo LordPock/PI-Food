@@ -13,7 +13,7 @@ router.get("/:id", async (req, res) => {
   try {
     if (id.includes('-') && id.length !== 36) throw new Error('El ID es inválido')
     let resultado = await searchId(id);
-    res.status(200).json({ resultado });
+    res.status(200).json( resultado );
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

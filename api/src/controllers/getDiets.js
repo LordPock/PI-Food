@@ -15,10 +15,13 @@ async function allDiets() {
     "Whole30",
   ];
 
+  try {
   for (const dieta of dietas) {
     let create = await Diet.create({ title: dieta });
   }
-
+  } catch(error) {
+    throw new Error(error.message)
+  }
   let resultado = await Diet.findAll();
 
   return resultado;
