@@ -1,21 +1,23 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 
-function Recipe(props) {
-  console.log(props)
+
+function recipe(props) {
+  
   return (
     <div >
        <div id={props.id} key={props.id}>
           <img  src={props.image} alt="No encontrado" /> 
-          {/* <NavLink to={`/detail/${props.id}`} className={styles.name}> */}
+          <NavLink to={`/recipes/${props.id}`}>
           <h2 >{props.title}</h2>
-          {/* </NavLink> */}
+          </NavLink>
           <h4>Score: {props.healthScore}</h4>
           <p >{props.summary}</p>
-          {/* <span>{props.dishTypes}</span> */}
-          {/* <span>{props.diets}</span> */}
+          <span>{props.dishTypes}</span>
+          <span>{props.diets}</span>
 
-          {/* {location.pathname ==='/home' ? */}
+          {/* {/* {location.pathname ==='/home' ? */}
           <button >X</button> 
           {/* : null } */}
           {/* {
@@ -29,4 +31,4 @@ function Recipe(props) {
     </div>
  );
       }
-export default Recipe;
+export default recipe;

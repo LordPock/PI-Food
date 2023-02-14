@@ -1,46 +1,43 @@
 import React from "react";
 import { useState } from "react";
+import { connect, useDispatch } from "react-redux";
 import Recipe from "../Recipe/recipe";
 
-async function Recipes() {
- //const [recetas, setRecetas] = useState([]);
-  var recetas = [];
-  
- if (recetas.length === 0) {
-    await fetch("http://localhost:3001/recipes")
-      .then((r) => r.json())
-      .then((data) => {
-        //setRecetas([...recetas, data]);
-        recetas = data;
-        // console.log(recetas)
-        // console.log(data);
-      });
-    }
+function recipes(props) {
+  const { recipes } = props;
+  console.log(recipes);
 
- 
   return (
     <div className="Recipes">
       <div>
-        {recetas.map((r) => {
-          return (
-            //console.log('receta id' + r.id),
-            (
+        {recipes ? (
+          recipes.map((r) => {
+            return (
               <Recipe
+                key={r?.id}
                 id={r?.id}
                 title={r?.title}
                 image={r?.image}
-                // dishTypes={r?.dishTypes}
-                // diets={r?.diets}
+                dishTypes={r?.dishTypes}
+                diets={r?.diets}
                 summary={r?.summary}
-                // instructions={r?.instruction}
+                instructions={r?.instruction}
                 healthScore={r?.healthScore}
               />
-            )
-          );
-        })}
-     </div> 
+            );
+          })
+        ) : (
+          <p>No hay nada</p>
+        )}
+      </div>
     </div>
   );
 }
 
-export default Recipes;
+export function mapStateToProps(state) {
+  return {
+    recipes: state.recipes,
+  };
+}
+
+export default connect(mapStateToProps, null)(recipes);
