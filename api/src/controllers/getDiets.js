@@ -15,6 +15,8 @@ async function allDiets() {
     "Whole30",
   ];
 
+  let buscar = await Diet.findAll()
+  if (!buscar) {
   try {
   for (const dieta of dietas) {
     let create = await Diet.create({ title: dieta });
@@ -25,6 +27,8 @@ async function allDiets() {
   let resultado = await Diet.findAll();
 
   return resultado;
+}
+return buscar
 }
 
 module.exports = allDiets;

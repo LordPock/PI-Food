@@ -6,6 +6,7 @@ const router = Router();
 router.use(express.json());
 
 router.post("/", async (req, res) => {
+  console.log(req.body);
   let { title, summary, image, healthScore, instructions, diets } = req.body;
 
   try {
