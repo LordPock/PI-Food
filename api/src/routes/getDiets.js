@@ -7,7 +7,6 @@ const router = Router();
 router.use(express.json());
 
 router.get("/", async (req, res) => {
-  
   try {
     let resultado = await allDiets();
     res.status(200).json( resultado );

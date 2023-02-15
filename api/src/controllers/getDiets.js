@@ -15,20 +15,17 @@ async function allDiets() {
     "Whole30",
   ];
 
-  let buscar = await Diet.findAll()
-  if (!buscar) {
-  try {
-  for (const dieta of dietas) {
-    let create = await Diet.create({ title: dieta });
-  }
-  } catch(error) {
-    throw new Error(error.message)
-  }
-  let resultado = await Diet.findAll();
+  let buscar = await Diet.findAll();
 
-  return resultado;
-}
-return buscar
+  if (buscar.length === 0) {
+    for (const dieta of dietas) {
+      let create = await Diet.create({ title: dieta });
+    }
+
+    let resultado = await Diet.findAll();
+    return resultado;
+  }
+  return buscar;
 }
 
 module.exports = allDiets;
