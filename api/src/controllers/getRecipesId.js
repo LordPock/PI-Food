@@ -20,8 +20,8 @@ async function searchId(id) {
       image: recipe.image,
       dishTypes: recipe.dishTypes,
       diets: recipe.diets,
-      summary: recipe.summary,
-      instructions: recipe.instructions,
+      summary: recipe.summary.replace(/(<([^>]+)>)/ig, ''),
+      instructions: recipe.instructions.replace(/(<([^>]+)>)/ig, ''),
       healthScore: recipe.healthScore,
     };
     if (recipe?.length === 0)
@@ -39,6 +39,15 @@ async function searchId(id) {
         through: { attributes: [] },
       },
     });
+
+    let objArray
+ for (const r of resultado) {
+    objArray = r.diets.map(d =>{
+      return d.title
+    })
+    r.diets = objArray
+  }
+  
     if (!resultado)
       throw new Error(`No existen recetas con ID ${id}`);
     return resultado;

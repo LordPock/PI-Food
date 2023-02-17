@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const { Op } = require("sequelize");
-const { Recipe } = require("../db");
+const { Recipe, Diet } = require("../db");
 const { API_KEY } = process.env;
 
 var recipe = [];
@@ -34,7 +34,22 @@ async function searchAPI() {
 }
 
 async function searchDB() {
-  let resultado = await Recipe.findAll();
+  let resultado = await Recipe.findAll({
+    include: {
+      model: Diet,
+      attributes: ["title"],
+      through: { attributes: [] },
+    },
+  });
+  
+  let objArray
+ for (const r of resultado) {
+    objArray = r.diets.map(d =>{
+      return d.title
+    })
+    r.diets = objArray
+  }
+  
   return resultado;
 }
 

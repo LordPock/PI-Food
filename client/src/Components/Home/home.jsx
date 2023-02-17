@@ -1,19 +1,23 @@
 import { Link, Outlet } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addRecipes } from "../../redux/actions";
+import { addDiets, addRecipes} from "../../redux/actions";
 
 function Home() {
 
   const dispatch = useDispatch()
 
+
+
   async function getRecipes() {
+    await dispatch(addDiets())
     await dispatch(addRecipes())
+    
   }
 
   return (
     <div className="Home">
-      <h1>Bienvenidos</h1>
+      <h1>Bienvenidos a HENRY en tu cocina</h1>
       <Link to={"/recipes"}>
         <button onClick={getRecipes}>Ingresar</button>
       </Link>

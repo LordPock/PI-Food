@@ -1,14 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
+//import Loading from "../Loading/loading";
 import Recipe from "../Recipe/recipe";
 
-function recipes(props) {
+function Recipes(props) {
   const { recipes } = props;
-  console.log(recipes);
 
   return (
     <div className="Recipes">
+      {/* {!isLoading ? <Loading /> :  */}
       <div>
         {recipes ? (
           recipes.map((r) => {
@@ -30,6 +30,7 @@ function recipes(props) {
           <p>No hay nada</p>
         )}
       </div>
+{/* } */}
     </div>
   );
 }
@@ -37,7 +38,8 @@ function recipes(props) {
 export function mapStateToProps(state) {
   return {
     recipes: state.recipes,
+    diets: state.diets,
   };
 }
 
-export default connect(mapStateToProps, null)(recipes);
+export default connect(mapStateToProps, null)(Recipes);
