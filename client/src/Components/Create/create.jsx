@@ -1,17 +1,15 @@
-import { useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import validation from "../Validation/validation";
-import { addRecipes, createRecipe } from "../../redux/actions";
-import { Link } from "react-router-dom";
+import { createRecipe } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
 import styles from './create.module.css'
 
 export function Create(props) {
-  const { diets } = props
-  const dispatch = useDispatch
+  const { diets, message } = props
 
-  function getRecipes() {
-    dispatch(addRecipes())
-  }
+  const navigate = useNavigate()
+
 
   const [receta, setReceta] = useState({
     title: "",
@@ -31,6 +29,12 @@ export function Create(props) {
     diets: "",
   });
 
+  let mensaje
+  useEffect(() => {
+    mensaje = message ? message : 'Espere'
+    console.log(mensaje);
+  }, [message])
+
   function handleInputChange(e) {
     setReceta({ ...receta, [e.target.name]: e.target.value });
     setErrors(validation({ ...receta, [e.target.name]: e.target.value }));
@@ -46,7 +50,17 @@ export function Create(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.createRecipe(receta);
+    props.createRecipe(receta)
+    if (typeof mensaje === 'string') {
+      alert(mensaje)
+        navigate(-1)
+      } else {
+        alert(mensaje.error)
+      } 
+  }
+
+  function handleReturn() {
+    window.history.back()
   }
 
   return (
@@ -54,23 +68,28 @@ export function Create(props) {
         <div className={styles.div}>
       <form onSubmit={handleSubmit}>
         <label>Título: </label>
-        <input name="title" type='text' value={receta.title} onChange={handleInputChange}/>
+        <input className={errors.title && styles.warning} name="title" type='text' value={receta.title} onChange={handleInputChange}/>
+        {!errors.title ? null : <p className={styles.danger}>{errors.title}</p>}
         <label>Imagen: </label>
-        <input name="image" type='text' value={receta.image} onChange={handleInputChange}/>
+        <input className={errors.image && styles.warning} name="image" type='text' value={receta.image} onChange={handleInputChange}/>
+        {!errors.image ? null : <p className={styles.danger}>{errors.image}</p>}
         <label>Puntaje saludable: </label>
-        <input name="healthScore" type='' value={receta.healthScore} onChange={handleInputChange}/>
+        <input className={errors.healthScore && styles.warning} name="healthScore" type='number' value={receta.healthScore} onChange={handleInputChange}/>
+        {!errors.healthScore ? null : <p className={styles.danger}>{errors.healthScore}</p>}
         <label>Resumen: </label>
-        <input name="summary" type='' value={receta.summary} onChange={handleInputChange}/>
+        <input className={errors.summary && styles.warning} name="summary" type='textarea' value={receta.summary} onChange={handleInputChange}/>
+        {!errors.summary ? null : <p className={styles.danger}>{errors.summary}</p>}
         <label>Instrucciones</label>
-        <input name="instructions" type='' value={receta.instructions} onChange={handleInputChange}/>
+        <input className={errors.instructions && styles.warning} name="instructions" type='textarea' value={receta.instructions} onChange={handleInputChange}/>
+        {!errors.instructions ? null : <p className={styles.danger}>{errors.instructions}</p>}
         <label>Dietas: </label>
         {diets ? diets.map((d) => 
-        <label><input onClick={addDiets} type={"checkbox"} label={d.title} key={d.id} className={styles.check} value={d.title}/>{d.title}</label>
+        <label><input className={errors.diets && styles.warning} onClick={addDiets} type={"checkbox"} label={d.title} key={d.id} value={d.title}/>{d.title}</label>
 ) : <h3>No hay recetas cargadas </h3>}
+
         <button type='submit'>Agregar</button>
       </form>
-      <Link to={'/recipes'}>
-      <button>Volver</button></Link>
+      <button onClick={handleReturn}>Volver</button>
     </div>
     <div>
         <img src={receta.image} alt='Imagen no encontrada' />
@@ -88,6 +107,7 @@ export function mapDispatchToProps(dispatch) {
 export function mapStateToProps(state) {
   return {
     diets: state.diets,
+    message: state.message
   };
 }
 

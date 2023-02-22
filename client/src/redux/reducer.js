@@ -1,13 +1,14 @@
 const initialState = {
   recipes: [],
   allRecipes: [],
-  detail: [],
+  detail: null,
   diets: [],
+  message: []
 };
 
 export default function reducerRecipe(state = initialState, action) {
   switch (action.type) {
-    case "ADD_RECIPES":
+    case "GET_RECIPES":
       const all = action.payload.sort((a, b) => {
         if (a.title > b.title) {
           return 1;
@@ -32,18 +33,19 @@ export default function reducerRecipe(state = initialState, action) {
         ),
       };
     case "CREATE":
-      const created = [...state.allRecipes, action.payload];
-      return { ...state, allRecipes: [...created] };
+      const created = [...state.allRecipes, action.payload[0]];
+      return { ...state, allRecipes: [...created], message: action.payload[1] };
     case "DELETE_RECIPE":
       const borrar = state.allRecipes.filter((r) => r.id !== action.payload);
       return { ...state, allRecipes: borrar, recipes: borrar };
     case "FILTER":
       let filtro = [];
-      console.log(action.payload);
       for (const r of state.allRecipes) {
-        for (const d of action.payload) {
-          if (r.diets.includes(d.toLowerCase())) {
-            if (!filtro.includes(r)) filtro.push(r);
+        for (const d of r.diets) {
+          for (const a of action.payload) {
+            if (d.toLowerCase().includes(a.toLowerCase())) {
+              if (!filtro.includes(r)) filtro.push(r);
+            }
           }
         }
       }
@@ -51,26 +53,42 @@ export default function reducerRecipe(state = initialState, action) {
         ...state,
         recipes: filtro,
       };
-    case "ORDER ALFABETICO":
-      if (action.payload === "Ascendente") {
-        const ordenado = [...state.recipes].sort((a, b) => a.title - b.title);
-        return { ...state, recipes: ordenado };
-      } else {
-        const ordenado = [...state.recipes].sort((a, b) => b.title - a.title);
+    case "ORDER":
+      if (action.payload === "AASC") {
+        const ordenado = [...state.recipes].sort((a, b) => {
+          if (a.title > b.title) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
         return { ...state, recipes: ordenado };
       }
-    case "ORDER HEALTH":
-      if (action.payload === "Ascendente") {
+      if (action.payload === "ADSC") {
+        const ordenado = [...state.recipes].sort((a, b) => {
+          if (b.title > a.title) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+        return { ...state, recipes: ordenado };
+      }
+      if (action.payload === "HASC") {
         const ordenado = [...state.recipes].sort(
           (a, b) => a.healthScore - b.healthScore
         );
         return { ...state, recipes: ordenado };
-      } else {
+      }
+      if (action.payload === "HDSC") {
         const ordenado = [...state.recipes].sort(
           (a, b) => b.healthScore - a.healthScore
         );
         return { ...state, recipes: ordenado };
       }
+    case "EMPTY":
+      return { ...state, detail: action.payload };
+      break;
     default:
       return state;
   }

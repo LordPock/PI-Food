@@ -16,12 +16,13 @@ async function searchId(id) {
       )
       .then((response) => (recipe = response.data));
     let receta = {
+      id: recipe.id,
       title: recipe.title,
       image: recipe.image,
       dishTypes: recipe.dishTypes,
       diets: recipe.diets,
-      summary: recipe.summary.replace(/(<([^>]+)>)/ig, ''),
-      instructions: recipe.instructions.replace(/(<([^>]+)>)/ig, ''),
+      summary: recipe.summary.replace(/(<([^>]+)>)/gi, ""),
+      instructions: recipe.instructions.replace(/(<([^>]+)>)/gi, ""),
       healthScore: recipe.healthScore,
     };
     if (recipe?.length === 0)
@@ -29,10 +30,8 @@ async function searchId(id) {
 
     return receta;
   } else {
-    let resultado = await Recipe.findOne({
-      where: {
-        id: id,
-      },
+    let resultado = await Recipe.findByPk(id, {
+
       include: {
         model: Diet,
         attributes: ["title"],
@@ -40,16 +39,13 @@ async function searchId(id) {
       },
     });
 
-    let objArray
- for (const r of resultado) {
-    objArray = r.diets.map(d =>{
+    let objArray = resultado.dataValues.diets.map(d =>{
       return d.title
     })
-    r.diets = objArray
-  }
+    //resultado.dataValues.diets = objArray
   
-    if (!resultado)
-      throw new Error(`No existen recetas con ID ${id}`);
+
+    if (!resultado) throw new Error(`No existen recetas con ID ${id}`);
     return resultado;
   }
 }

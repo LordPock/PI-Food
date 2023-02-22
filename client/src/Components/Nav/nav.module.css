@@ -1,0 +1,16 @@
+.ordenyfiltro {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+.orden {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 20px;
+}
+
+.filtro {
+    display: flex;
+}

@@ -1,10 +1,10 @@
-export function addRecipes() {
+export function getRecipes() {
   return async (dispatch) => {
     await fetch("http://localhost:3001/recipes")
       .then((r) => r.json())
       .then((data) =>
         dispatch({
-          type: "ADD_RECIPES",
+          type: "GET_RECIPES",
           payload: data,
         })
       );
@@ -55,7 +55,7 @@ export function createRecipe(recipe) {
     })
       .then((response) => response.json())
       .then((result) => {
-        dispatch({ type: "CREATE", payload: recipe });
+        dispatch({ type: "CREATE", payload: [recipe, result] });
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -63,9 +63,23 @@ export function createRecipe(recipe) {
   };
 }
 
-export function filterRecipe(filter) {
+export function filterRecipes(filter) {
   return {
     type: "FILTER",
     payload: filter,
   };
+}
+
+export function sortRecipes(sort) {
+  return {
+    type: "ORDER",
+    payload: sort,
+  };
+}
+
+export function emptyDetail() {
+  return {
+    type: 'EMPTY',
+    payload: null
+  }
 }

@@ -26,7 +26,7 @@ async function search(name) {
 async function searchAPI() {
   await axios
     .get(
-      `https://api.spoonacular.com/recipes/complexSearch?number=2&addRecipeInformation=true&apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/complexSearch?number=10&addRecipeInformation=true&apiKey=${API_KEY}`
     )
     .then((response) => (recipe = response.data.results));
 
@@ -40,17 +40,28 @@ async function searchDB() {
       attributes: ["title"],
       through: { attributes: [] },
     },
+    raw: true,
+    nest: true,
   });
-  
-  let objArray
- for (const r of resultado) {
-    objArray = r.diets.map(d =>{
-      return d.title
-    })
-    r.diets = objArray
+
+  const recetas = [...resultado];
+
+  for (let i = 0; i < recetas?.length; i++) {
+    for (let j = 1; j <= recetas?.length; j++) {
+      if (recetas[i].id === recetas[j].id) {
+        let aux = [];
+        aux.push(recetas[i].diets.title);
+        aux.push(recetas[j].diets.title);
+        recetas[i].diets = [];
+        for (const d of aux) {
+        recetas[i].diets.push(d)
+        }
+        recetas.splice(j, 1);
+      }
+    }
   }
-  
-  return resultado;
+
+  return recetas;
 }
 
 module.exports = { search, searchAPI, searchDB };
