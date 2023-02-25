@@ -4,6 +4,7 @@ import { addDiets, getRecipes } from "../../redux/actions";
 import Loading from "../Loading/loading";
 import Paginado from "../Paginado/paginado";
 import Recipe from "../Recipe/recipe";
+import styles from "./recipes.module.css"
 
 function Recipes(props) {
   const { recipes } = props;
@@ -14,7 +15,7 @@ function Recipes(props) {
     dispatch(addDiets());
   }, [dispatch]);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(9);
@@ -26,17 +27,24 @@ function Recipes(props) {
     setCurrentPage(pageNumber);
   };
 
+  useEffect(() => {
+    if (recipesToShow) {
+      setIsLoading(false);
+    }
+  }, [recipesToShow])
+
   return (
     <div>
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="Recipes">
+        <div className={styles.container}>
           <Paginado
             recipesPerPage={recipesPerPage}
             recipes={recipes.length}
             paginado={paginado}
           />
+          <div className={styles.recipes}>
           {recipesToShow ? (
             recipesToShow.map((r) => {
               return (
@@ -56,6 +64,7 @@ function Recipes(props) {
           ) : (
             <p>No hay nada</p>
           )}
+          </div>
         </div>
       )}
     </div>

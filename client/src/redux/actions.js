@@ -79,7 +79,14 @@ export function sortRecipes(sort) {
 
 export function emptyDetail() {
   return {
-    type: 'EMPTY',
+    type: 'EMPTY_D',
+    payload: null
+  }
+}
+
+export function emptyMessage() {
+  return {
+    type: 'EMPTY_M',
     payload: null
   }
 }

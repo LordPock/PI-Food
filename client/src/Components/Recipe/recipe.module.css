@@ -1,0 +1,110 @@
+.div {
+    background-image: url('../../../public/src/recipe.jpg');
+    background-size: 33em;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 555px;
+    height: 375px;
+    display: flex;
+    justify-content: center;
+    border-color: black;
+    border-style: double;
+    position: relative;
+    margin: 15px;
+}
+
+.recipe {
+    /* background-image: url('../../../public/src/anotador.png');
+    background-size: 15em;
+    background-repeat: no-repeat; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 250px;
+    /* margin: 15px; */
+
+}
+
+.img {
+    width: 180px;
+    position: absolute;
+    right: 50px;
+    top: 150px;
+    border-color: black;
+    border-style: double;
+}
+
+.title {
+    font-size: medium;
+    width: 175px;
+    position: absolute;
+    right: 60px;
+    top: 40px;
+}
+
+.health {
+    font-size: smaller;
+    /* font-family:Arial, Helvetica, sans-serif; */
+    position: absolute;
+    right: 40px;
+    bottom: 25px;
+    border-color: rgb(6, 207, 23);
+    border-style: double;
+    border-radius: 50%;
+    color: rgb(0, 7, 0);
+    
+}
+
+.dish {
+    position: absolute;
+    width: 200px;
+    right: 55px;
+    top: 50px;  
+    opacity: 0%;     
+}
+
+.diet {
+    position: absolute;
+    width: 200px;
+    right: 55px;
+    bottom: 50px;
+    opacity: 0%;  
+}
+
+.book {
+    /* background-image: url('../../../public/src/anotador.png');
+    background-size: 15em;
+    background-repeat: no-repeat; */
+    width: 250px;
+    height: 315px;
+    
+    position: absolute;
+    right: 25px;
+    top: 30px;
+    /* border-color: black;
+    border-style: double; */
+}
+
+.recipe:hover .book {
+    transform:rotateY(180deg)
+}
+
+.recipe:hover .img {
+    opacity: 0%;
+}
+
+.recipe:hover .title {
+    opacity: 0%;
+}
+
+.recipe:hover .health {
+    opacity: 0%;
+}
+
+.recipe:hover .dish {
+    opacity: 100%;
+}
+
+.recipe:hover .diet {
+    opacity: 100%;
+}

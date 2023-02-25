@@ -1,16 +1,65 @@
+.container {
+    display: flex;
+    justify-content: center;
+    
+}
+
 .ordenyfiltro {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    background-color: darkorange;
+    width: 900px;
+    /* height: 80px; */
     
 }
 
 .orden {
     display: flex;
-    justify-content: space-evenly;
+    width: 450px;
+    flex-direction: column;
     margin-right: 20px;
+    background-color: blue;
 }
 
 .filtro {
     display: flex;
+    width: 450px;
+    flex-direction: column;
+    background-color: red;
+}
+
+.check {
+    display: flex;
+    font-size: 12px;
+    height: 60px;
+    background-color: yellow;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+
+}
+
+.box {
+    /* flex-wrap: wrap; */
+    /* display: block; */
+    width: 100%;
+    height: 100%;
+    background-color: rgb(167, 224, 167);
+}
+
+.select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    background-color: aqua;
+}
+
+.button {
+    font-size: 50px;
+    background-color: transparent;
+
 }

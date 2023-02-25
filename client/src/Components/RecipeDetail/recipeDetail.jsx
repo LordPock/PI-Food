@@ -4,17 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import { emptyDetail, findRecipe } from "../../redux/actions";
 import Loading from "../Loading/loading";
 
-
 export function RecipeDetail(props) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { detail } = props;
-   const [isLoading, setIsLoading] = useState(true)
-
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
    setIsLoading(true)
-   dispatch(emptyDetail)
    dispatch(findRecipe(id));
     // eslint-disable-next-line
   }, [id]);

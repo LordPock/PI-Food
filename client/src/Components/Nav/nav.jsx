@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { filterRecipes, sortRecipes } from "../../redux/actions";
+import { emptyMessage, filterRecipes, sortRecipes } from "../../redux/actions";
 import Search from "../Search/search";
-import styles from "./nav.module.css"
+import styles from "./nav.module.css";
 
 export function Nav(props) {
   const { diets } = props;
@@ -23,14 +23,17 @@ export function Nav(props) {
     "Whole30",
   ]);
 
+  const [hidden, setHidden] = useState({
+    sort: true,
+    filter: true
+  })
+
   function viewFilter() {
-    let filter = document.getElementById("Filter");
-    filter.hidden = !filter.hidden;
+    setHidden({...hidden, filter: !hidden.filter});
   }
 
   function viewSort() {
-    let sort = document.getElementById("Sort");
-    sort.hidden = !sort.hidden;
+    setHidden({...hidden, sort: !hidden.sort});
   }
 
   function addFilter(e) {
@@ -42,7 +45,11 @@ export function Nav(props) {
   }
 
   function handleSort(e) {
-    dispatch(sortRecipes(e.target.value))
+    dispatch(sortRecipes(e.target.value));
+  }
+
+  function handleCreate() {
+    dispatch(emptyMessage());
   }
 
   return (
@@ -51,49 +58,59 @@ export function Nav(props) {
         <h1>HENRY en tu cocina</h1>
         <NavLink to={"/about"}>About</NavLink>
         <Search />
-        <Link to={"/create"}>
-          <button>Crear receta </button>
+        <Link  to={"/create"}>
+          <button onClick={handleCreate}>Crear receta </button>
         </Link>
-        <div className={styles.ordenyfiltro}>
-          <div >
-            <button onClick={viewSort}>Orden</button>
-            <div className={styles.orden} id="Sort" hidden={true}>
-              <label>
-                Alfabético
-                <select onChange={handleSort} defaultValue="Ascendente">
-                  <option value='AASC'>Ascendente</option>
-                  <option value='ADSC'>Descendente</option>
-                </select>
-              </label>
-              <label>
-                Saludable
-                <select onChange={handleSort} defaultValue="Ascendente">
-                  <option value='HASC'>Ascendente</option>
-                  <option value='HDSC'>Descendente</option>
-                </select>
-              </label>
+        <div className={styles.container}>
+          <div className={styles.ordenyfiltro}>
+            <div className={styles.orden} >
+              <div>
+              <button className={styles.button} onClick={viewSort}>&#x23eb; &#x23ec; &#10835;</button>
+              </div>
+              <div className={!hidden.sort && styles.select} id="Sort" hidden={hidden.sort}>
+                <label>
+                  Alfabético
+                  <select onChange={handleSort} defaultValue="">
+                    <option value="AASC">Ascendente</option>
+                    <option value="ADSC">Descendente</option>
+                  </select>
+                </label>
+                <label>
+                  Saludable
+                  <select onChange={handleSort} defaultValue="">
+                    <option value="HASC">Ascendente</option>
+                    <option value="HDSC">Descendente</option>
+                  </select>
+                </label>
+              </div>
             </div>
-          </div>
-          <div>
-            <button onClick={viewFilter}>Filtros</button>
-            <div id="Filter" hidden={true}>
-              {diets ? (
-                diets.map((d) => (
-                  <label key={d.title}>
-                    <input
-                      onClick={addFilter}
-                      type={"checkbox"}
-                      label={d.title}
-                      key={d.id}
-                      value={d.title}
-                      defaultChecked={true}
-                    />
-                    {d.title}
-                  </label>
-                ))
-              ) : (
-                <h5>No hay tipo de dietas cargadas </h5>
-              )}
+            <div className={styles.filtro}>
+              <div>
+                <div>
+                <button onClick={viewFilter}>Filtros</button>
+                </div>
+                <div className={!hidden.filter && styles.check} id="Filter" hidden={hidden.filter}>
+                  {diets ? (
+                    diets.map((d) => (
+                      <div>
+                        <input
+                          onClick={addFilter}
+                          type={"checkbox"}
+                          label={d.title}
+                          key={d.id}
+                          value={d.title}
+                          defaultChecked={true}
+                        /><label className={styles.box} key={d.title}>
+                        {d.title}
+                      </label>
+                      </div>
+                    ))
+                  ) : (
+                    <h5>No hay tipo de dietas cargadas </h5>
+                  )}
+                </div>
+                
+              </div>
             </div>
           </div>
         </div>

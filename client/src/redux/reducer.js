@@ -3,7 +3,7 @@ const initialState = {
   allRecipes: [],
   detail: null,
   diets: [],
-  message: []
+  message: null,
 };
 
 export default function reducerRecipe(state = initialState, action) {
@@ -56,7 +56,7 @@ export default function reducerRecipe(state = initialState, action) {
     case "ORDER":
       if (action.payload === "AASC") {
         const ordenado = [...state.recipes].sort((a, b) => {
-          if (a.title > b.title) {
+          if (a.title.toLowerCase() > b.title.toLowerCase()) {
             return 1;
           } else {
             return -1;
@@ -66,7 +66,7 @@ export default function reducerRecipe(state = initialState, action) {
       }
       if (action.payload === "ADSC") {
         const ordenado = [...state.recipes].sort((a, b) => {
-          if (b.title > a.title) {
+          if (b.title.toLowerCase() > a.title.toLowerCase()) {
             return 1;
           } else {
             return -1;
@@ -86,9 +86,11 @@ export default function reducerRecipe(state = initialState, action) {
         );
         return { ...state, recipes: ordenado };
       }
-    case "EMPTY":
+    case "EMPTY_D":
       return { ...state, detail: action.payload };
-      break;
+    case "EMPTY_M":
+      return { ...state, message: action.payload };
+
     default:
       return state;
   }
