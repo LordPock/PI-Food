@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url("../public/src/fondo.jpg");
   /* background-position: center;  */
-  background-size: 30em;
+  background-size: 50em;
 }
 
 code {

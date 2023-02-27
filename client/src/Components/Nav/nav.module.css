@@ -1,65 +1,127 @@
-.container {
-    display: flex;
-    justify-content: center;
-    
+.nav {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.ordenyfiltro {
-    display: flex;
-    flex-direction: row;
-    /* justify-content: space-evenly; */
-    background-color: darkorange;
-    width: 900px;
-    /* height: 80px; */
-    
+.navs {
+    display:grid;
+    cursor: pointer;
+    width: 100%;
+    grid-template-columns: 150px 850px;
 }
+
+.container {
+    width: 120px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-style: ridge;
+ 
+}
+
+.menu:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.25);
+    font-size: 14px;
+    border-style: inset;
+    justify-content: flex-start;
+}
+
+.submenu:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* .submenu option:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+} */
 
 .orden {
     display: flex;
-    width: 450px;
     flex-direction: column;
-    margin-right: 20px;
-    background-color: blue;
+    /* flex-wrap: wrap; */
+    align-items: flex-start;
+    position: relative;
+    justify-content: flex-start;
+    left: 10px;
+    width: 100px;
+    
+}
+.orden:hover {
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
-.filtro {
+.health {
     display: flex;
-    width: 450px;
-    flex-direction: column;
-    background-color: red;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: flex-start;
+    position: relative;
+    justify-content: flex-start;
+    left: 10px;
+    width: 100px;
+    
+}
+
+.health:hover {
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
 .check {
-    display: flex;
-    font-size: 12px;
-    height: 60px;
-    background-color: yellow;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: center;
-
-}
-
-.box {
-    /* flex-wrap: wrap; */
-    /* display: block; */
-    width: 100%;
-    height: 100%;
-    background-color: rgb(167, 224, 167);
+  display: grid;
+  grid-template-columns: 120px 120px 120px 120px 120px 120px;
+  /* grid-template-columns: 100%; */
+  font-size: 12px;
+  justify-items: start;
+  background-color:  rgba(255, 255, 255, 0.25);
+  /* color: white; */
+  cursor: pointer;
+  border-style: inset;
+  font-weight: bold;
 }
 
 .select {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-evenly;
+  /* height: 60px; */
 }
 
 .button {
-    font-size: 50px;
-    background-color: transparent;
+  font-size: 30px;
+  background-color: transparent;
+  border-color: transparent;
+}
 
+.logo {
+  width: 300px;
+}
+
+.filtros {
+    cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.filtros:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+
+.revIcon {
+  transform: rotateY(180deg);
 }

@@ -72,17 +72,14 @@
 }
 
 .book {
-    /* background-image: url('../../../public/src/anotador.png');
-    background-size: 15em;
-    background-repeat: no-repeat; */
+
     width: 250px;
     height: 315px;
     
     position: absolute;
     right: 25px;
     top: 30px;
-    /* border-color: black;
-    border-style: double; */
+
 }
 
 .recipe:hover .book {

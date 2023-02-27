@@ -24,7 +24,13 @@ export default function reducerRecipe(state = initialState, action) {
     case "GET_DETAIL":
       return { ...state, detail: action.payload };
     case "GET_DIETS":
-      return { ...state, diets: action.payload };
+      const dietas = action.payload.sort((a, b) => {
+        if (a.title > b.title) {
+          return 1;
+        } else {
+          return -1;
+        }})
+      return { ...state, diets: dietas };
     case "SEARCH":
       return {
         ...state,
