@@ -1,6 +1,7 @@
 
 import { connect } from "react-redux";
 import { searchRecipe } from "../../redux/actions";
+import styles from './search.module.css'
 
 export function Search(props) {
 
@@ -10,7 +11,7 @@ export function Search(props) {
 
 
   return (
-    <div>
+    <div className={styles.container}>
       <input
 
         title="input"

@@ -6,24 +6,36 @@
 }
 
 .navs {
-    display:grid;
-    cursor: pointer;
-    width: 100%;
-    grid-template-columns: 150px 850px;
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  grid-template-columns: 150px 850px 150px;
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
 .container {
-    width: 120px;
-    font-size: 15px;
-    font-weight: bold;
+    width: 230px;
+    font-size: 12px;
+    
+    /* font-weight: bold; */
 }
 
 .menu {
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between;
     background-color: rgba(255, 255, 255, 0.25);
     border-style: ridge;
+    width: 100%;
+    font-weight: bold;
  
+}
+
+.ordenar {
+  display: flex;
+    justify-content: space-between;
+    width: 75%;
 }
 
 .menu:hover {
@@ -36,48 +48,40 @@
     align-items: flex-start;
     position: relative;
     background-color: rgba(255, 255, 255, 0.25);
-    font-size: 14px;
+    font-size: 11px;
     border-style: inset;
-    justify-content: flex-start;
-}
-
-.submenu:hover {
-    background-color: rgba(255, 255, 255, 0.75);
-}
-
-/* .submenu option:hover {
-    background-color: rgba(255, 255, 255, 0.75);
-} */
-
-.orden {
-    display: flex;
-    flex-direction: column;
-    /* flex-wrap: wrap; */
-    align-items: flex-start;
-    position: relative;
-    justify-content: flex-start;
-    left: 10px;
-    width: 100px;
+    justify-content: space-between;
+    width: 100%;
     
 }
-.orden:hover {
-    background-color: rgba(255, 255, 255, 0.75);
+.submenu div {
+  /* position: relative; */
+  left: 5px;
+}
+.submenu option {
+  position: relative;
+  left: 15px;
 }
 
-.health {
-    display: flex;
-    /* flex-direction: column; */
-    flex-wrap: wrap;
-    align-items: flex-start;
-    position: relative;
-    justify-content: flex-start;
-    left: 10px;
-    width: 100px;
-    
+.submenu div:hover {
+    background-color: rgba(0, 0, 0, 0.75);
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+}
+.submenu option:hover {
+  background-color: rgba(74, 7, 230, 0.75);
+  font-size: 13px;
+  color: white;
+  font-weight: bold;
 }
 
-.health:hover {
-    background-color: rgba(255, 255, 255, 0.75);
+.submenuitems {
+  /* display: flex; */
+  position: relative;
+  left: 15px;
+  justify-content: space-between;
+  
 }
 
 .check {
@@ -101,14 +105,8 @@
   /* height: 60px; */
 }
 
-.button {
-  font-size: 30px;
-  background-color: transparent;
-  border-color: transparent;
-}
-
 .logo {
-  width: 300px;
+  width: 470px;
 }
 
 .filtros {
@@ -121,7 +119,7 @@
   color: white;
 }
 
-
-.revIcon {
-  transform: rotateY(180deg);
+.center {
+  height: 231px;
 }
+
