@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { emptyMessage, filterRecipes, sortRecipes } from "../../redux/actions";
+import { addDiets, emptyMessage, filterRecipes, sortRecipes } from "../../redux/actions";
 import Search from "../Search/search";
 import styles from "./nav.module.css";
 
@@ -20,20 +20,26 @@ export function Nav(props) {
     menu: true,
   });
 
-  useEffect(() => {
-    let filtro = diets && diets;
-    let filt = [];
-    filtro.forEach((d) => filt.push(d.title));
-    setFilter(filt);
-  }, [diets]);
+  const [checked, setChecked] = useState(11);
 
   function addFilter(e) {
+    !e.target.checked ? setChecked(checked - 1) : setChecked(checked + 1);
     const updatedFilters = filters.includes(e.target.value)
       ? filters.filter((d) => d !== e.target.value)
       : [...filters, e.target.value];
     setFilter(updatedFilters);
     dispatch(filterRecipes(updatedFilters));
   }
+
+  useEffect(() => {
+    // if (checked === 0) {
+    let filtro = diets && diets;
+   console.log(filtro);
+    let filt = [];
+    filtro.forEach((d) => filt.push(d.title));
+    setFilter(filt);
+    // }
+  }, [diets]);
 
   function handleSort(e) {
     dispatch(sortRecipes(e.target.value));
@@ -51,7 +57,7 @@ export function Nav(props) {
   function handleHidden(e) {
     setHidden({ ...hidden, [e.target.id]: !hidden[e.target.id] });
   }
-
+  console.log(filters);
   return (
     <div className={styles.nav}>
       <div className={styles.navs}>

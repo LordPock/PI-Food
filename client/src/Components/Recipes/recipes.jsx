@@ -9,10 +9,13 @@ import styles from "./recipes.module.css"
 function Recipes(props) {
   const { recipes } = props;
   const dispatch = useDispatch();
-
   useEffect(() => {
+    let recetas = recipes && recipes
+    if(recetas.lenght === 0) {
     dispatch(getRecipes());
-    dispatch(addDiets());
+    }
+    // dispatch(addDiets());
+    
   }, [dispatch]);
 
   const [isLoading, setIsLoading] = useState(true);
