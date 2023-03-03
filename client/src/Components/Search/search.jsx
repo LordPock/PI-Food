@@ -12,6 +12,8 @@ export function Search(props) {
 
   return (
     <div className={styles.container}>
+      <button ></button>
+      <div hidden={true}>
       <input
 
         title="input"
@@ -19,7 +21,7 @@ export function Search(props) {
         onChange={HandleChange}
         placeholder="Buscar receta"
       />
-      <button>Ver todas</button>
+      </div>
     </div>
   );
 }

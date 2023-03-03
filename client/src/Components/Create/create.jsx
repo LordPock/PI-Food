@@ -69,16 +69,19 @@ export function Create(props) {
   }
 
   return (
-    <div>
-      <div className={styles.div}>
+    <div className={styles.recipeDetail}>
+      <div className={styles.container}>
+      <div className={styles.details}>
+
         <form onSubmit={handleSubmit}>
-          <label>Título: </label>
+          <div className={styles.first}>
           <input
             className={errors.title && styles.warning}
             name="title"
             type="text"
             value={receta.title}
             onChange={handleInputChange}
+            placeholder="Título"
           />
           {!errors.title ? null : (
             <p className={styles.danger}>{errors.title}</p>
@@ -91,43 +94,11 @@ export function Create(props) {
             value={receta.image}
             onChange={handleInputChange}
           />
+          <div>
           {!errors.image ? null : (
             <p className={styles.danger}>{errors.image}</p>
           )}
-          <label>Puntaje saludable: </label>
-          <input
-            className={errors.healthScore && styles.warning}
-            name="healthScore"
-            type="number"
-            value={receta.healthScore}
-            onChange={handleInputChange}
-          />
-          {!errors.healthScore ? null : (
-            <p className={styles.danger}>{errors.healthScore}</p>
-          )}
-          <label>Resumen: </label>
-          <input
-            className={errors.summary && styles.warning}
-            name="summary"
-            type="textarea"
-            value={receta.summary}
-            onChange={handleInputChange}
-          />
-          {!errors.summary ? null : (
-            <p className={styles.danger}>{errors.summary}</p>
-          )}
-          <label>Instrucciones</label>
-          <input
-            className={errors.instructions && styles.warning}
-            name="instructions"
-            type="textarea"
-            value={receta.instructions}
-            onChange={handleInputChange}
-          />
-          {!errors.instructions ? null : (
-            <p className={styles.danger}>{errors.instructions}</p>
-          )}
-          <label>Dietas: </label>
+<label>Tipo de dieta: </label>
           {diets ? (
             diets.map((d) => (
               <label>
@@ -146,12 +117,52 @@ export function Create(props) {
             <h3>No hay recetas cargadas </h3>
           )}
 
+          <label>Puntaje saludable: </label>
+          <input
+            className={errors.healthScore && styles.warning}
+            name="healthScore"
+            type="number"
+            value={receta.healthScore}
+            onChange={handleInputChange}
+          />
+          {!errors.healthScore ? null : (
+            <p className={styles.danger}>{errors.healthScore}</p>
+          )}
+          </div>
+          </div>
+            <div className={styles.second}>
+          <h1>Resumen: </h1>
+          <input
+            className={errors.summary && styles.warning}
+            name="summary"
+            type="textarea"
+            value={receta.summary}
+            onChange={handleInputChange}
+          />
+          {!errors.summary ? null : (
+            <p className={styles.danger}>{errors.summary}</p>
+          )}
+</div>
+<div className={styles.third}></div>
+          <h1>Instrucciones</h1>
+          <input
+            className={errors.instructions && styles.warning}
+            name="instructions"
+            type="textarea"
+            value={receta.instructions}
+            onChange={handleInputChange}
+          />
+          {!errors.instructions ? null : (
+            <p className={styles.danger}>{errors.instructions}</p>
+          )}
           <button type="submit">Agregar</button>
+
         </form>
         <button onClick={handleReturn}>Volver</button>
       </div>
       <div>
         <img src={receta.image} alt="Imagen no encontrada" />
+      </div>
       </div>
     </div>
   );

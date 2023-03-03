@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
-import { addDiets, getRecipes } from "../../redux/actions";
+import { getRecipes } from "../../redux/actions";
 import Loading from "../Loading/loading";
 import Paginado from "../Paginado/paginado";
 import Recipe from "../Recipe/recipe";
-import styles from "./recipes.module.css"
+import styles from "./recipes.module.css";
 
 function Recipes(props) {
   const { recipes } = props;
   const dispatch = useDispatch();
   useEffect(() => {
-    let recetas = recipes && recipes
-    if(recetas.lenght === 0) {
-    dispatch(getRecipes());
+    let recetas = recipes && recipes;
+    if (recetas.lenght === 0) {
+      dispatch(getRecipes());
     }
-    // dispatch(addDiets());
-    
   }, [dispatch]);
 
   const [isLoading, setIsLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(9);
   const indexLastRecipe = currentPage * recipesPerPage;
@@ -34,7 +31,7 @@ function Recipes(props) {
     if (recipesToShow) {
       setIsLoading(false);
     }
-  }, [recipesToShow])
+  }, [recipesToShow]);
 
   return (
     <div>
@@ -48,25 +45,25 @@ function Recipes(props) {
             paginado={paginado}
           />
           <div className={styles.recipes}>
-          {recipesToShow ? (
-            recipesToShow.map((r) => {
-              return (
-                <Recipe
-                  key={r?.id}
-                  id={r?.id}
-                  title={r?.title}
-                  image={r?.image}
-                  dishTypes={r?.dishTypes}
-                  diets={r?.diets}
-                  summary={r?.summary}
-                  instructions={r?.instruction}
-                  healthScore={r?.healthScore}
-                />
-              );
-            })
-          ) : (
-            <p>No hay nada</p>
-          )}
+            {recipesToShow ? (
+              recipesToShow.map((r) => {
+                return (
+                  <Recipe
+                    key={r?.id}
+                    id={r?.id}
+                    title={r?.title}
+                    image={r?.image}
+                    dishTypes={r?.dishTypes}
+                    diets={r?.diets}
+                    summary={r?.summary}
+                    instructions={r?.instruction}
+                    healthScore={r?.healthScore}
+                  />
+                );
+              })
+            ) : (
+              <p>No hay nada</p>
+            )}
           </div>
         </div>
       )}
