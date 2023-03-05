@@ -30,9 +30,7 @@ async function createRecipe({
 
     await resultado.addDiet(dieta);
   }
-
-
-
+  
 }
 
 module.exports = createRecipe;

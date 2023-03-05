@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { emptyDetail } from "../../redux/actions";
 import styles from "./recipe.module.css";
 
@@ -10,17 +10,14 @@ function Recipe(props) {
 
   function handleDetail() {
     dispatch(emptyDetail());
-    navigation(`/recipes/${props.id}`);
+    navigation(`/recipes/${props.id}`, {method: 'PUT'});
   }
 
-  function handleEdit() {}
-
-  function handleDelete() {}
 
   return (
     <div className={styles.div}>
-      <div onClick={handleDetail} className={styles.luis}>
-        <div className={styles.recipe} id={props.id} key={props.id}>
+      <div  className={styles.luis}>
+        <div onClick={handleDetail} className={styles.recipe} id={props.id && props.id} key={props.id && props.id}>
           <h2 className={styles.title}>{props.title}</h2>
           <img className={styles.img} src={props.image} alt="No encontrado" />
           <h4
@@ -36,21 +33,22 @@ function Recipe(props) {
           </h4>
         </div>
         <div className={styles.back}>
-          <div className={styles.dish}>
+         {props.dishTypes ? <div onClick={handleDetail} className={styles.dish}>
             <b>Tipo de plato: </b>
              <span>{props.dishTypes?.join(", ")}</span>
-          </div>
-          <div className={styles.diet}>
+          </div> : null}
+          <div onClick={handleDetail} className={styles.diet}>
             <b>Tipo de dieta: </b> 
-            <span>{props.diets.join(", ")}</span>
+            {props.diets && typeof props.diets[0] === 'object' ? <span>{props.diets.map((d, index) => index !== props.diets.length - 1  ? d.title + ', ' : d.title)}</span> : <span>{props.diets?.join(', ')}</span>  }
           </div>
+          <div className={styles.icon}>
+        {props.id && props.id.length > 10 ? <div onClick={() => props.handleEdit(props.id)}> &#128395;</div> : null}
+        <div onClick={() => props.handleDelete(props.id)}> &#128465;</div>
+      </div>
         </div>
       </div>
 
-      <div className={styles.icon}>
-        <div onClick={handleEdit}> &#128395;</div>
-        <div onClick={handleDelete}> &#128465;</div>
-      </div>
+      
     </div>
   );
 }

@@ -90,3 +90,43 @@ export function emptyMessage() {
     payload: null
   }
 }
+
+export function deleteRecipe(id) {
+  return async (dispatch) => {
+    await fetch(`http://localhost:3001/recipes/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify(id),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        dispatch({ type: "DELETE", payload: [id, result] });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+}
+
+export function updateRecipe(recipe) {
+  console.log(recipe);
+  return async (dispatch) => {
+    await fetch(`http://localhost:3001/recipes/update/${recipe.id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+       body: JSON.stringify(recipe),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        dispatch({ type: "UPDATE", payload: [recipe, result] });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+ 
+}

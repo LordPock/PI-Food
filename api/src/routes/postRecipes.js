@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
       image,
       healthScore,
       instructions,
-      diets
+      diets,
     });
     res.status(200).json(`Su receta se ha creado con éxito. \n\nGracias por compartirla!.`);
   } catch (error) {

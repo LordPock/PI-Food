@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addDiets, emptyMessage, filterRecipes, sortRecipes } from "../../redux/actions";
+import { useLocation, useNavigate } from "react-router-dom";
+import { emptyMessage, filterRecipes, sortRecipes } from "../../redux/actions";
 import Search from "../Search/search";
 import styles from "./nav.module.css";
 
@@ -9,16 +9,11 @@ export function Nav(props) {
   const { diets } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation()
 
   const [filters, setFilter] = useState([]);
 
-  const [hidden, setHidden] = useState({
-    sort: true,
-    filter: true,
-    alf: true,
-    health: true,
-    menu: true,
-  });
+  const [hidden, setHidden] = useState(true);
 
   const [checked, setChecked] = useState(11);
 
@@ -32,13 +27,10 @@ export function Nav(props) {
   }
 
   useEffect(() => {
-    // if (checked === 0) {
     let filtro = diets && diets;
-   console.log(filtro);
     let filt = [];
     filtro.forEach((d) => filt.push(d.title));
     setFilter(filt);
-    // }
   }, [diets]);
 
   function handleSort(e) {
@@ -55,75 +47,37 @@ export function Nav(props) {
   }
 
   function handleHidden(e) {
-    setHidden({ ...hidden, [e.target.id]: !hidden[e.target.id] });
+    setHidden(!hidden);
   }
-  console.log(filters);
+
+  function handleHome() {
+    navigate("/recipes");
+  }
+
+
   return (
     <div className={styles.nav}>
       <div className={styles.navs}>
-        <div className={styles.container}>
-          <div onClick={handleHidden} id="menu" className={styles.menu}>
-            Menu
-            {hidden.menu ? <div>&#x2B;</div> : <div>&#x207B;</div>}
+        <div className={styles.left}>
+          <div onClick={handleHome} className={styles.ccreate}>
+            <input placeholder="Volver a página principal" disabled={true} />
+            <div className={styles.home}></div>
           </div>
-          <div
-            className={!hidden.menu ? styles.submenu : undefined}
-            hidden={hidden.menu}
-          >
-            <div id="create" onClick={handleCreate}>
-              Añadir receta
-            </div>
-            <div id="filter" onClick={handleHidden}>
-              Filtrar
-            </div>
-            <div className={styles.ordenar} id="sort" onClick={handleHidden}>
-              Ordenar
-              {hidden.sort ? <span>&#x2B;</span> : <span>&#x207B;</span>}
-            </div>
-            <div
-              className={!hidden.sort ? styles.submenuitems : undefined}
-              id="alf"
-              hidden={hidden.sort}
-              onClick={handleHidden}
-            >
-              Alfabeticamente
-              {hidden.alf ? <span>&#x2B;</span> : <span>&#x207B;</span>}
-            </div>
-
-            <option hidden={hidden.alf} value="AASC" onClick={handleSort}>
-              Ascendente
-            </option>
-
-            <option hidden={hidden.alf} value="ADSC" onClick={handleSort}>
-              Descendente
-            </option>
-
-            <div
-              className={!hidden.sort ? styles.submenuitems : undefined}
-              onClick={handleHidden}
-              id="health"
-              hidden={hidden.sort}
-            >
-              Saludable
-              {hidden.health ? <span>&#x2B;</span> : <span>&#x207B;</span>}
-            </div>
-            <option hidden={hidden.health} value="HASC" onClick={handleSort}>
-              Ascendente
-            </option>
-            <option hidden={hidden.health} value="HDSC" onClick={handleSort}>
-              Descendente
-            </option>
-
-            <div onClick={handleAbout}>About</div>
+          {location.pathname === '/recipes' ? <div>
+            <Search />
+          </div> : null}
+          <div onClick={handleCreate} className={styles.ccreate}>
+            <input placeholder="Añadir receta" disabled={true} />
+            <div className={styles.create}></div>
           </div>
         </div>
 
         <div className={styles.center}>
           <img className={styles.logo} src="src/nav.png" alt="" />
-          <div
-            className={!hidden.filter ? styles.check : undefined}
+          {location.pathname === '/recipes' ? <div
+            className={!hidden ? styles.check : undefined}
             id="Filter"
-            hidden={hidden.filter}
+            hidden={hidden}
           >
             {diets ? (
               diets.map((d) => (
@@ -144,10 +98,41 @@ export function Nav(props) {
             ) : (
               <h5>No hay tipo de dietas cargadas </h5>
             )}
-          </div>
+          </div> : null }
         </div>
-        <div>
-          <Search />
+
+        <div className={styles.right}>
+          <div onClick={handleAbout} className={styles.ccreate}>
+            <div className={styles.about}></div>
+            <input placeholder="Sobre mí" disabled={true} />
+          </div>
+          {location.pathname === '/recipes' ? <div className={styles.ccreate} onClick={handleHidden}>
+            <div className={styles.filter}></div>
+            <input placeholder="Filtrar" disabled={true} />
+          </div> : null }
+          {location.pathname === '/recipes' ? <div className={styles.ccreate}>
+            <div className={styles.sort}> </div>
+            <option
+              className={styles.AASC}
+              value="AASC"
+              onClick={handleSort}
+            ></option>
+            <option
+              className={styles.ADSC}
+              value="ADSC"
+              onClick={handleSort}
+            ></option>
+            <option
+              className={styles.HASC}
+              value="HASC"
+              onClick={handleSort}
+            ></option>
+            <option
+              className={styles.HDSC}
+              value="HDSC"
+              onClick={handleSort}
+            ></option>
+          </div> : null }
         </div>
       </div>
     </div>

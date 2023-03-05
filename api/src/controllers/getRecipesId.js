@@ -1,6 +1,5 @@
 require("dotenv").config();
 const axios = require("axios");
-const { Op } = require("sequelize");
 const { Recipe, Diet } = require("../db");
 const { API_KEY } = process.env;
 
@@ -30,6 +29,7 @@ async function searchId(id) {
 
     return receta;
   } else {
+
     let resultado = await Recipe.findByPk(id, {
 
       include: {
@@ -39,11 +39,10 @@ async function searchId(id) {
       },
     });
 
-    let objArray = resultado.dataValues.diets.map(d =>{
-      return d.title
-    })
-    //resultado.dataValues.diets = objArray
-  
+    // let objArray = resultado?.dataValues?.diets?.map(d =>{
+    //   return d.title
+    // })
+    // resultado.dataValues.diets = objArray
 
     if (!resultado) throw new Error(`No existen recetas con ID ${id}`);
     return resultado;

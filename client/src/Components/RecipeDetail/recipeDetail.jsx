@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { emptyDetail, findRecipe } from "../../redux/actions";
 import Loading from "../Loading/loading";
 import styles from "./recipeDetail.module.css";
@@ -46,7 +46,7 @@ export function RecipeDetail(props) {
                   <h3>Tipo de plato: {detail.dishTypes.join(", ")}</h3>
                 ) : null}
                 {detail.diets ? (
-                  <h3>Tipo de dieta: {detail.diets.join(", ")}</h3>
+                  <h3>Tipo de dieta: {detail.diets && typeof detail.diets[0] === 'object' ? <span>{detail.diets.map((d, index) => index !== detail.diets.length - 1  ? d.title + ', ' : d.title)}</span> : <span>{detail.diets?.join(', ')}</span>  }</h3>
                 ) : null}
                 <h4>Puntaje saludable: {detail.healthScore}</h4>
               </div>

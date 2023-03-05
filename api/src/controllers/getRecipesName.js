@@ -1,6 +1,5 @@
 require("dotenv").config();
 const axios = require("axios");
-const { Op } = require("sequelize");
 const { Recipe, Diet } = require("../db");
 const { API_KEY } = process.env;
 
@@ -40,26 +39,30 @@ async function searchDB() {
       attributes: ["title"],
       through: { attributes: [] },
     },
-    raw: true,
-    nest: true,
+    // raw: true,
+    // nest: true,
   });
-
+  
   const recetas = [...resultado];
 
-  for (let i = 0; i < recetas?.length; i++) {
-    for (let j = 1; j <= recetas?.length; j++) {
-      if (recetas[i].id === recetas[j].id) {
-        let aux = [];
-        aux.push(recetas[i].diets.title);
-        aux.push(recetas[j].diets.title);
-        recetas[i].diets = [];
-        for (const d of aux) {
-        recetas[i].diets.push(d)
-        }
-        recetas.splice(j, 1);
-      }
-    }
-  }
+  // for (let i = 0; i < recetas?.length; i++) {
+  //   for (let j = 1; j <= recetas?.length; j++) {
+  //     if (recetas[i].id === recetas[j]?.id) {
+  //       let aux = [];
+  //       aux.push(recetas[i].diets.title);
+  //       aux.push(recetas[j].diets.title);
+  //       recetas[i].diets = [];
+  //       for (const d of aux) {
+  //       recetas[i].diets.push(d)
+  //       }
+  //       recetas.splice(j, 1);
+  //     }
+  //   }
+  // }
+
+
+
+
 
   return recetas;
 }

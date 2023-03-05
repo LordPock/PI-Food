@@ -21,37 +21,52 @@ export default function reducerRecipe(state = initialState, action) {
         allRecipes: all,
         recipes: all,
       };
+
     case "GET_DETAIL":
       return { ...state, detail: action.payload };
+
     case "GET_DIETS":
       const dietas = action.payload.sort((a, b) => {
         if (a.title > b.title) {
           return 1;
         } else {
           return -1;
-        }})
+        }
+      });
       return { ...state, diets: dietas };
+
     case "SEARCH":
-      return {
-        ...state,
-        recipes: state.allRecipes.filter((r) =>
+      if (action.payload) {
+        const search = state.allRecipes.filter((r) =>
           r.title.toLowerCase().includes(action.payload.toLowerCase())
-        ),
-      };
+        );
+        return {
+          ...state,
+          recipes: search,
+        };
+      } else {
+        const search = state.allRecipes;
+        return {
+          ...state,
+          recipes: search,
+        };
+      }
+
     case "CREATE":
       const created = [...state.allRecipes, action.payload[0]];
       return { ...state, allRecipes: [...created], message: action.payload[1] };
+
     case "DELETE_RECIPE":
       const borrar = state.allRecipes.filter((r) => r.id !== action.payload);
       return { ...state, allRecipes: borrar, recipes: borrar };
+
     case "FILTER":
       let filtro = [];
       for (const r of state.allRecipes) {
         for (const d of r.diets) {
           for (const a of action.payload) {
-            if (d.toLowerCase().includes(a.toLowerCase())) {
-              if (!filtro.includes(r)) filtro.push(r);
-            }
+            d.title ? d.title?.toLowerCase().includes(a?.toLowerCase()) &&!filtro.includes(r) && filtro.push(r) : d.toLowerCase().includes(a.toLowerCase()) && !filtro.includes(r) && filtro.push(r);
+            
           }
         }
       }
@@ -59,6 +74,7 @@ export default function reducerRecipe(state = initialState, action) {
         ...state,
         recipes: filtro,
       };
+
     case "ORDER":
       if (action.payload === "AASC") {
         const ordenado = [...state.recipes].sort((a, b) => {
@@ -92,10 +108,34 @@ export default function reducerRecipe(state = initialState, action) {
         );
         return { ...state, recipes: ordenado };
       }
+      break;
     case "EMPTY_D":
       return { ...state, detail: action.payload };
+
     case "EMPTY_M":
       return { ...state, message: action.payload };
+
+    case "DELETE":
+      let borrado = state.allRecipes.filter((r) => r.id !== action.payload[0]);
+      return {
+        ...state,
+        allRecipes: borrado,
+        recipes: borrado,
+        message: action.payload[1],
+      };
+
+    case "UPDATE":
+      return {
+        ...state,
+        allRecipes: state.allRecipes.map((r) => {
+          if (r.id === action.payload[0].id) {
+            return action.payload[0];
+          }
+          return r;
+        }),
+        recipes: state.allRecipes,
+        message: action.payload[1],
+      };
 
     default:
       return state;

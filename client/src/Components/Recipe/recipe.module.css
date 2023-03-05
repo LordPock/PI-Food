@@ -1,21 +1,22 @@
 .div {
-  background-image: url("../../../public/src/recipe.jpg");
-  background-size: 33em;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 555px;
-  height: 375px;
+  /* background-image: url("../../../public/src/recipe.jpg"); */
+  /* background-size: 33em; */
+  /* background-repeat: no-repeat; */
+  /* background-position: center; */
+  width: 500px;
+  height: 350px;
   display: flex;
-  border-color: black;
-  border-style: double;
-  position: relative;
-  margin: 15px;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-direction: column;
+  /* border-color: black; */
+  /* border-style: double; */
+  /* position: relative; */
+  /* margin: 15px; */
+  justify-content: center;
+  /* align-items: center; */
+  /* flex-direction: column; */
 }
 
 .luis {
+  /* filter: drop-shadow(2px 4px 6px rgba(0, 0, 0)); */
   transform-style: preserve-3d;
   transition: 1s ease;
   width: 50%;
@@ -24,7 +25,7 @@
 }
 
 .recipe {
-  background-image: url("../../../public/src/anotador.png");
+  background-image: url("../../../public/src/pagina.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -38,10 +39,11 @@
   justify-content: space-between;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0));
 }
 
 .back {
-  background-image: url("../../../public/src/anotadorback.png");
+  background-image: url("../../../public/src/pagina2.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -59,6 +61,7 @@
   backface-visibility: hidden;
   font-size: 14px;
   text-align: start;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0));
 }
 
 .img {
@@ -137,9 +140,16 @@
   display: flex;
   align-items: flex-end;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   position: relative;
-  left: -29px;
-  bottom: 7px;
+  left: 109px;
+  /* bottom: 7px; */
   cursor: pointer;
+  text-align: justify;
+  width: 45%;
+  border-radius: 50%;
+}
+.icon div:hover {
+  border-radius: 50%;
+  backdrop-filter: sepia(100);
 }
