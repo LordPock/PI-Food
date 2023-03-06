@@ -1,0 +1,80 @@
+.paginado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-image: url("../../../public/src/paginado.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    width: auto;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0));
+   
+}
+
+.paginado ul {
+  display: flex;
+  justify-content: space-between;
+  padding-inline-start: 0px;
+  text-align: center;
+}
+.paginado a {
+    cursor: pointer;
+    display: flex;
+    width: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.primero {
+    background-image: url('../../../public/src/primero.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border-color: transparent;
+    width: 30px;
+    height: 20px;
+}
+
+.anterior {
+    background-image: url('../../../public/src/anterior.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border-color: transparent;
+    width: 30px;
+    height: 20px;
+}
+
+.siguiente {
+    background-image: url('../../../public/src/siguiente.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border-color: transparent;
+    width: 30px;
+    height: 20px;
+}
+
+.ultimo {
+    background-image: url('../../../public/src/ultimo.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border-color: transparent;
+    width: 30px;
+    height: 20px;
+}
+
+.current {
+    backdrop-filter: blur(3);
+    background-color: rgb(0, 0, 0, 0.75);
+    border-radius: 50%;
+    color: yellow;
+    font-weight: bold;
+}

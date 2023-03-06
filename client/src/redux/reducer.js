@@ -56,10 +56,6 @@ export default function reducerRecipe(state = initialState, action) {
       const created = [...state.allRecipes, action.payload[0]];
       return { ...state, allRecipes: [...created], message: action.payload[1] };
 
-    case "DELETE_RECIPE":
-      const borrar = state.allRecipes.filter((r) => r.id !== action.payload);
-      return { ...state, allRecipes: borrar, recipes: borrar };
-
     case "FILTER":
       let filtro = [];
       for (const r of state.allRecipes) {

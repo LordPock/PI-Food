@@ -58,9 +58,11 @@
 .ccreate:hover input {
   max-width: 180px;
 }
-
 .ccreate:hover option {
   max-width: 60px;
+}
+.ccreate:hover select {
+  max-width: 180px;
 }
 
 .ccreate input {
@@ -83,7 +85,7 @@
   padding: 0;
   text-indent: 12px;
   color: rgb(30, 30, 30);
-  font-size: 12px;
+  font-size: 14px;
   font-family: "Lobster Two", regular;
   outline: none;
   transition: 1s;
@@ -102,24 +104,6 @@
 
 .center {
   display: flex;
-}
-
-.check {
-  display: grid;
-  grid-template-columns: 120px 120px 120px 120px 120px 120px;
-  font-size: 12px;
-  justify-items: start;
-  background-color: rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-  border-style: inset;
-  font-weight: bold;
-}
-
-.select {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-content: space-evenly;
 }
 
 .logo {
@@ -154,6 +138,22 @@
   height: 37px;
   border-radius: 50%;
   padding: 5px;
+}
+.ccreate select {
+  background: transparent;
+  border: 0;
+  max-width: 0;
+  padding: 0;
+  text-indent: 0px;
+  color: rgb(30, 30, 30);
+  font-size: 15px;
+  font-family: "Lobster Two", regular;
+  outline: none;
+  text-align: left;
+  transition: 1s;
+}
+.selected {
+  background-color: rgb(221, 220, 220)
 }
 
 .sort {

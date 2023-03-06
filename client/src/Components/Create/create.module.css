@@ -185,7 +185,7 @@
   background-position: center;
   width: 30%;
   color: rgb(30, 30, 30);
-  display: block;
+  /* display: block; */
 }
 .third h1 {
   text-decoration: underline;
@@ -258,4 +258,12 @@
 }
 .return:hover {
   backdrop-filter: sepia(1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 115px 115px 115px;
+  grid-auto-flow: row;
+  position: relative;
+  left: -5px;
 }

@@ -111,7 +111,7 @@ export function deleteRecipe(id) {
 }
 
 export function updateRecipe(recipe) {
-  console.log(recipe);
+
   return async (dispatch) => {
     await fetch(`http://localhost:3001/recipes/update/${recipe.id}`, {
       method: "PUT",

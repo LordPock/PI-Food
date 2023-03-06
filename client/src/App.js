@@ -7,6 +7,7 @@ import RecipeDetail from "./Components/RecipeDetail/recipeDetail";
 import Nav from "./Components/Nav/nav"
 import Create from "./Components/Create/create";
 import { Update } from "./Components/Update/update";
+import About from "./Components/About/about";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route path='/recipes/:id' element={<RecipeDetail />}/>
           <Route path='/create' element={<Create />} />
           <Route path="/recipes/update/:id" element={<Update />} />
+          <Route path='/about' element={<About />} />
         </Routes>
       </div>
     </div>

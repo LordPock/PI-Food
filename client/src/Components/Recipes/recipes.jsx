@@ -15,7 +15,9 @@ function Recipes(props) {
 
   useEffect(() => {
     let recetas = recipes && recipes;
+    setCurrentPage(1)
     if (recetas.lenght === 0) {
+      dispatch(emptyMessage())
       dispatch(getRecipes());
     }
   }, [recipes, dispatch]);
@@ -68,10 +70,12 @@ function Recipes(props) {
         <Loading />
       ) : (
         <div className={styles.container}>
+
           <Paginado
             recipesPerPage={recipesPerPage}
             recipes={recipes.length}
             paginado={paginado}
+            currentPage={currentPage}
           />
           <div className={styles.recipes}>
             {recipesToShow ? (
@@ -96,8 +100,15 @@ function Recipes(props) {
               <p>No hay nada</p>
             )}
           </div>
-        </div>
+         <Paginado
+            recipesPerPage={recipesPerPage}
+            recipes={recipes.length}
+            paginado={paginado}
+            currentPage={currentPage}
+          />
+          </div>
       )}
+     
     </div>
   );
 }

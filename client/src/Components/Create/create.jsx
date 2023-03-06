@@ -106,6 +106,7 @@ export function Create(props) {
                 </b>
               </label>
               {diets ? (
+                <div className={styles.grid}>  {
                 diets.map((d) => (
                   <label key={d.id}>
                     <input
@@ -119,6 +120,7 @@ export function Create(props) {
                     {d.title}
                   </label>
                 ))
+}</div>
               ) : (
                 <h3>No hay recetas cargadas </h3>
               )}

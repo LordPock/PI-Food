@@ -39,6 +39,7 @@
   position: relative;
   flex-direction: row;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .first {
@@ -258,4 +259,12 @@
 }
 .return:hover {
   backdrop-filter: sepia(1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 115px 115px 115px;
+  grid-auto-flow: row;
+  position: relative;
+  left: -5px;
 }

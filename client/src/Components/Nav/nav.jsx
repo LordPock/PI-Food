@@ -13,17 +13,18 @@ export function Nav(props) {
 
   const [filters, setFilter] = useState([]);
 
-  const [hidden, setHidden] = useState(true);
-
-  const [checked, setChecked] = useState(11);
+  // const [checked, setChecked] = useState(11);
 
   function addFilter(e) {
-    !e.target.checked ? setChecked(checked - 1) : setChecked(checked + 1);
+    // !e.target.checked ? setChecked(checked - 1) : setChecked(checked + 1);
     const updatedFilters = filters.includes(e.target.value)
       ? filters.filter((d) => d !== e.target.value)
       : [...filters, e.target.value];
     setFilter(updatedFilters);
     dispatch(filterRecipes(updatedFilters));
+    let select = document.getElementById('filtrar')
+    select.value = 'Filtro';
+
   }
 
   useEffect(() => {
@@ -46,13 +47,11 @@ export function Nav(props) {
     navigate("/about");
   }
 
-  function handleHidden(e) {
-    setHidden(!hidden);
-  }
-
   function handleHome() {
     navigate("/recipes");
   }
+
+
 
 
   return (
@@ -74,31 +73,6 @@ export function Nav(props) {
 
         <div className={styles.center}>
           <img className={styles.logo} src="src/nav.png" alt="" />
-          {location.pathname === '/recipes' ? <div
-            className={!hidden ? styles.check : undefined}
-            id="Filter"
-            hidden={hidden}
-          >
-            {diets ? (
-              diets.map((d) => (
-                <div key={d.id}>
-                  <label key={d.title}>
-                    <input
-                      onClick={addFilter}
-                      type={"checkbox"}
-                      label={d.title}
-                      key={d.id}
-                      value={d.title}
-                      defaultChecked={true}
-                    />
-                    {d.title}
-                  </label>
-                </div>
-              ))
-            ) : (
-              <h5>No hay tipo de dietas cargadas </h5>
-            )}
-          </div> : null }
         </div>
 
         <div className={styles.right}>
@@ -106,9 +80,15 @@ export function Nav(props) {
             <div className={styles.about}></div>
             <input placeholder="Sobre mí" disabled={true} />
           </div>
-          {location.pathname === '/recipes' ? <div className={styles.ccreate} onClick={handleHidden}>
+          {location.pathname === '/recipes' ? <div className={styles.ccreate} >
             <div className={styles.filter}></div>
-            <input placeholder="Filtrar" disabled={true} />
+            <select placeholder="Filtros" title="Filtrar" id="filtrar" onChange={addFilter} > 
+            <option value="Filtro" >Filtros</option>
+              {diets ? (
+              diets.map((d) => 
+                <option className={filters.includes(d.title) ? styles.selected : styles.unselected} value={d.title} key={d.title}>{d.title}</option>
+              )) : null}
+            </select>
           </div> : null }
           {location.pathname === '/recipes' ? <div className={styles.ccreate}>
             <div className={styles.sort}> </div>
