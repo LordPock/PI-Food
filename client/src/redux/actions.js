@@ -1,6 +1,12 @@
+const deploy = 'https://pi-food-kgyc.onrender.com'
+const local = "http://localhost:3001"
+const pivot = true
+
+
+
 export function getRecipes() {
   return async (dispatch) => {
-    await fetch("http://localhost:3001/recipes")
+    await fetch((pivot ? deploy : local) + "/recipes")
       .then((r) => r.json())
       .then((data) =>
         dispatch({
@@ -13,7 +19,7 @@ export function getRecipes() {
 
 export function findRecipe(id) {
   return async (dispatch) => {
-    await fetch(`http://localhost:3001/recipes/${id}`)
+    await fetch((pivot ? deploy : local) + `/recipes/${id}`)
       .then((r) => r.json())
       .then((data) =>
         dispatch({
@@ -26,7 +32,7 @@ export function findRecipe(id) {
 
 export function addDiets() {
   return async (dispatch) => {
-    await fetch("http://localhost:3001/diets")
+    await fetch((pivot ? deploy : local) + "/diets")
       .then((r) => r.json())
       .then((data) => 
         dispatch({
@@ -46,7 +52,7 @@ export function searchRecipe(title) {
 
 export function createRecipe(recipe) {
   return async (dispatch) => {
-    await fetch("http://localhost:3001/recipes", {
+    await fetch((pivot ? deploy : local) + "/recipes", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +99,7 @@ export function emptyMessage() {
 
 export function deleteRecipe(id) {
   return async (dispatch) => {
-    await fetch(`http://localhost:3001/recipes/${id}`, {
+    await fetch((pivot ? deploy : local) + `/recipes/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
@@ -113,7 +119,7 @@ export function deleteRecipe(id) {
 export function updateRecipe(recipe) {
 
   return async (dispatch) => {
-    await fetch(`http://localhost:3001/recipes/update/${recipe.id}`, {
+    await fetch((pivot ? deploy : local) + `/recipes/update/${recipe.id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
