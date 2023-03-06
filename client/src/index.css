@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url("../public/src/fondo.jpg"); */
   /* background-position: center;  */
-  background-image: url("../public/src/recipeDetail.png");
+  background-image: url("../public/src/recipeDetail.jpg");
   background-size: cover;
   min-height: 100vh;
   background-repeat: no-repeat;
