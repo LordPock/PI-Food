@@ -9,6 +9,7 @@ body {
   /* background-position: center;  */
   background-image: url("../public/src/recipeDetail.jpg");
   background-size: cover;
+  min-height: 100vh;
   background-repeat: no-repeat;
 }
 
