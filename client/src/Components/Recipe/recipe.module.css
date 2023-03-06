@@ -74,10 +74,12 @@
 }
 
 .title {
-  font-size: medium;
+  font-size: 14px;
   width: 175px;
   text-decoration: underline;
   text-decoration-style: double;
+  position: relative;
+  left: 10px;
 }
 
 .health {

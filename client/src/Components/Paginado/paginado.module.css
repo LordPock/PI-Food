@@ -22,7 +22,7 @@
 .paginado a {
     cursor: pointer;
     display: flex;
-    width: 20px;
+    width: 30px;
     text-align: center;
     justify-content: center;
 }

@@ -2,7 +2,7 @@
   margin-top: 15px;
   display: flex;
   color: wheat;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
 }
 
@@ -12,7 +12,10 @@
   border-radius: 25px;
 }
 .about2 h3 {
-  transform: rotate(-10deg)
+  transform: rotate(-10deg);
+  width: 1%;
+  position: relative;
+  left: 70%;
 }
 
 .h2 {
@@ -38,7 +41,7 @@
   text-align: right;
   display: flex;
   justify-content: flex-end;
-  width: 70%;
+  width: 100%;
 }
 
 .button {
@@ -46,12 +49,12 @@
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: transparent;
+  background-color: yellow;
   border-color: transparent;
-  width: 10%;
-  height: 10%;
-  position: relative;
-  bottom: -8%;
-  right: -30%;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+  position: relative;
+  left: 22%;
+  top: -70px;
 }
