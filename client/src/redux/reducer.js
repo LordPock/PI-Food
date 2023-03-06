@@ -57,6 +57,8 @@ export default function reducerRecipe(state = initialState, action) {
       return { ...state, allRecipes: [...created], message: action.payload[1] };
 
     case "FILTER":
+      console.log(action.payload);
+      if (action.payload.length > 0) {
       let filtro = [];
       for (const r of state.allRecipes) {
         for (const d of r.diets) {
@@ -70,7 +72,9 @@ export default function reducerRecipe(state = initialState, action) {
         ...state,
         recipes: filtro,
       };
-
+    } else {
+      return { ...state, recipes: state.allRecipes}
+    }
     case "ORDER":
       if (action.payload === "AASC") {
         const ordenado = [...state.recipes].sort((a, b) => {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { emptyMessage, filterRecipes, sortRecipes } from "../../redux/actions";
@@ -27,12 +27,12 @@ export function Nav(props) {
 
   }
 
-  useEffect(() => {
-    let filtro = diets && diets;
-    let filt = [];
-    filtro.forEach((d) => filt.push(d.title));
-    setFilter(filt);
-  }, [diets]);
+  // useEffect(() => {
+  //   let filtro = diets && diets;
+  //   let filt = [];
+  //   filtro.forEach((d) => filt.push(d.title));
+  //   setFilter(filt);
+  // }, [diets]);
 
   function handleSort(e) {
     dispatch(sortRecipes(e.target.value));
