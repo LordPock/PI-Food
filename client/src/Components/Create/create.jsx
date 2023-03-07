@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./create.module.css";
 
 export function Create(props) {
-  const { diets, message } = props;
+  const { diets, message, emptyMessage, createRecipe, getRecipes } = props;
 
   const navigate = useNavigate();
 
@@ -33,13 +33,14 @@ export function Create(props) {
       if (typeof message === "string") {
         let mensaje = message;
         alert(mensaje);
-        props.getRecipes()
+        emptyMessage();
+        getRecipes();
         navigate(-1);
       } else {
         let mensaje = message?.error;
         alert(mensaje);
       }
-    }// eslint-disable-next-line
+    } // eslint-disable-next-line
   }, [message]);
 
   function handleInputChange(e) {
@@ -60,11 +61,11 @@ export function Create(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.createRecipe(receta)
-    ;
+    createRecipe(receta);
   }
 
   function handleReturn() {
+    emptyMessage();
     navigate(-1);
   }
 
@@ -106,21 +107,21 @@ export function Create(props) {
                 </b>
               </label>
               {diets ? (
-                <div className={styles.grid}>  {
-                diets.map((d) => (
-                  <label key={d.id}>
-                    <input
-                      className={errors.diets && styles.warning}
-                      onClick={addDiets}
-                      type={"checkbox"}
-                      label={d.title}
-                      key={d.id}
-                      value={d.title}
-                    />
-                    {d.title}
-                  </label>
-                ))
-}</div>
+                <div className={styles.grid}>
+                  {diets.map((d) => (
+                    <label key={d.id}>
+                      <input
+                        className={errors.diets && styles.warning}
+                        onClick={addDiets}
+                        type={"checkbox"}
+                        label={d.title}
+                        key={d.id}
+                        value={d.title}
+                      />
+                      {d.title}
+                    </label>
+                  ))}
+                </div>
               ) : (
                 <h3>No hay recetas cargadas </h3>
               )}
@@ -189,7 +190,7 @@ export function mapDispatchToProps(dispatch) {
   return {
     createRecipe: (recipe) => dispatch(createRecipe(recipe)),
     emptyMessage: () => dispatch(emptyMessage()),
-    getRecipes: () => dispatch(getRecipes())
+    getRecipes: () => dispatch(getRecipes()),
   };
 }
 

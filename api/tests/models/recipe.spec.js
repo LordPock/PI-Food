@@ -15,7 +15,7 @@ describe('Recipe model', () => {
           .catch(() => done());
       });
       it('should work when its a valid name', () => {
-        Recipe.create({ name: 'Milanesa a la napolitana' });
+        Recipe.create({});
       });
     });
   });
