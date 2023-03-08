@@ -24,9 +24,9 @@
   height: 800px;
   border: double white;
   justify-content: center;
-  flex-direction: row;
-  align-items: flex-start;
-   font-family: "Lobster Two", regular;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Lobster Two", regular;
   backdrop-filter: blur(2px);
   border-radius: 75px;
   font-size: 50px;
@@ -94,7 +94,6 @@
 }
 .img input {
   width: 70%;
-  /* text-align: right; */
   margin-left: 5px;
 }
 
@@ -249,12 +248,12 @@
   background-position: center;
   background-color: transparent;
   border-color: transparent;
-  width: 4%;
-  height: 7%;
-  position: relative;
-  top: 6%;
-  left: 0%;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  top: 2%;
+  left: 2%;
+  /* border-radius: 50px; */
 }
 .return:hover {
   backdrop-filter: sepia(1);
@@ -268,4 +267,27 @@
   font-size: 12px;
   left: -5px;
   padding: 0px;
+}
+
+@media (max-width: 1600px) {
+  .return {
+    width: 60px;
+    height: 60px;
+    left: 3%;
+  }
+}
+
+@media (max-width: 1500px) {
+  .first {
+    width: 30%;
+  }
+  .grid {
+    grid-template-columns: 50% 50%;
+  }
+  .second {
+    width: 30%;
+  }
+  .third {
+    width: 30%;
+  }
 }
