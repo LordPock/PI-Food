@@ -4,7 +4,7 @@ const { Recipe, Diet } = require("../db");
 const { API_KEY } = process.env;
 
 var recipe = [];
-
+var key = 1
 async function search(name) {
   const resultAPI = await searchAPI();
   const resultDB = await searchDB();
@@ -25,10 +25,10 @@ async function search(name) {
 async function searchAPI() {
   await axios
     .get(
-      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}${key}`
     )
-    .then((response) => (recipe = response.data.results));
-
+    .then((response) => (recipe = response.data.results))
+    .catch((error) => {if(error) console.log(error.response.status)});
   return recipe;
 }
 

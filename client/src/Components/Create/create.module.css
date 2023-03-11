@@ -263,6 +263,7 @@
 }
 .return:hover {
   backdrop-filter: sepia(1);
+  cursor: pointer;
 }
 
 .grid {
