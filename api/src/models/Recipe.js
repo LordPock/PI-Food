@@ -23,7 +23,6 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: 'https://i.blogs.es/a174db/dap/1366_2000.jpg'
       },
 
       healthScore: {

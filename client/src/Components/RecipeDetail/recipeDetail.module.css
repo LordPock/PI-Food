@@ -7,7 +7,7 @@
 .container {
   display: flex;
   width: 90%;
-  height: 800px;
+  /* height: 800px; */
   border: double white;
   display: flex;
   justify-content: center;
@@ -24,6 +24,7 @@
   font-size: 15px;
   position: relative;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
 }
@@ -33,11 +34,12 @@
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 30%;
-  /* height: 1500px; */
+  width: 450px;
+  height: 800px;
   position: relative;
   filter: none;
   color: rgb(30, 30, 30);
+  margin: 10px;
 }
 .first h1 {
   position: relative;
@@ -75,21 +77,23 @@
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 30%;
+  width: 450px;
+  height: 800px;
   color: rgb(30, 30, 30);
+  margin: 10px;
 }
 .second h1 {
   text-decoration: underline;
   text-decoration-style: double;
   position: relative;
-  top: 3%;
+  top: 7%;
 }
 .second h4 {
   width: 70%;
   position: relative;
   left: 12%;
   text-align: start;
-  top: 5%;
+  top: 7%;
 }
 
 .third {
@@ -97,21 +101,23 @@
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 30%;
+  width: 450px;
+  height: 800px;
   color: rgb(30, 30, 30);
+  margin: 10px;
 }
 .third h1 {
   text-decoration: underline;
   text-decoration-style: double;
   position: relative;
-  top: 3%;
+  top: 7%;
 }
 .third h4 {
   width: 70%;
   position: relative;
   left: 20%;
   text-align: start;
-  top: 5%;
+  top: 7%;
 }
 .third button {
   background-image: url("../../../public/src/atras.png");
@@ -130,7 +136,7 @@
 .third button:hover {
   backdrop-filter: sepia(1);
 }
-
+/* 
 @media (max-width: 1800px) {
   .first {
     background-size: 100%;
@@ -259,4 +265,4 @@
     top: 10%;
   }
 }
-
+ */

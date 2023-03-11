@@ -21,11 +21,11 @@
 .container {
   display: flex;
   width: 90%;
-  height: 800px;
+  /* height: 800px; */
   border: double white;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   font-family: "Lobster Two", regular;
   backdrop-filter: blur(2px);
   border-radius: 75px;
@@ -38,6 +38,7 @@
   font-size: 15px;
   position: relative;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
@@ -51,6 +52,7 @@
   position: relative;
   filter: none;
   color: rgb(30, 30, 30);
+  margin: 10px;
 }
 .first textarea {
   position: relative;
@@ -146,7 +148,9 @@
   background-repeat: no-repeat;
   background-position: center;
   width: 450px;
+  height: 800px;
   color: rgb(30, 30, 30);
+  margin: 10px;
 }
 .second h1 {
   text-decoration: underline;
@@ -183,7 +187,9 @@
   background-repeat: no-repeat;
   background-position: center;
   width: 450px;
+  height: 800px;
   color: rgb(30, 30, 30);
+  margin: 10px;
   /* display: block; */
 }
 .third h1 {
@@ -269,7 +275,7 @@
   padding: 0px;
 }
 
-@media (max-width: 1600px) {
+/* @media (max-width: 1600px) {
   .return {
     width: 60px;
     height: 60px;
@@ -290,4 +296,4 @@
   .third {
     width: 30%;
   }
-}
+} */

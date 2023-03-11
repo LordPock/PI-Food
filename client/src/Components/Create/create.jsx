@@ -12,7 +12,7 @@ export function Create(props) {
 
   const [receta, setReceta] = useState({
     title: "",
-    image: "https://i.blogs.es/a174db/dap/1366_2000.jpg",
+    image: "",
     healthScore: 1,
     summary: "",
     instructions: "",
@@ -60,7 +60,9 @@ export function Create(props) {
   }
 
   function handleSubmit(e) {
+
     e.preventDefault();
+
     createRecipe(receta);
   }
 

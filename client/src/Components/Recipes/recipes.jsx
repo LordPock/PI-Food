@@ -35,7 +35,7 @@ function Recipes(props) {
   };
 
   useEffect(() => {
-    if (recipesToShow) {
+    if (recipesToShow.length > 0)  {
       dispatch(emptyMessage())
       setIsLoading(false);
     }
