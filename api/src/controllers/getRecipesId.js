@@ -16,7 +16,11 @@ async function searchId(id) {
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api}`
       )
       .then((response) => (recipe = response.data))
-      .catch((error) => {if(error) console.log(error.response.status, api, key)});
+      .catch((error) => {if(error.response.status === 402) {
+        key === 5 ? key = 1 : key++
+        searchAPI(id) }
+      });
+
     let receta = {
       id: recipe.id,
       title: recipe.title,

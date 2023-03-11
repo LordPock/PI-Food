@@ -32,7 +32,10 @@ async function searchAPI() {
       `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${api}`
     )
     .then((response) => (recipe = response.data.results))
-    .catch((error) => {if(error) console.log(error.response.status, api, key)});
+    .catch((error) => {if(error.response.status === 402) {
+      key === 5 ? key = 1 : key++
+      searchAPI() }
+    });
   return recipe;
 }
 
