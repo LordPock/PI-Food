@@ -13,10 +13,7 @@ export function Nav(props) {
 
   const [filters, setFilter] = useState([]);
 
-  // const [checked, setChecked] = useState(11);
-
   function addFilter(e) {
-    // !e.target.checked ? setChecked(checked - 1) : setChecked(checked + 1);
     const updatedFilters = filters.includes(e.target.value)
       ? filters.filter((d) => d !== e.target.value)
       : [...filters, e.target.value];
@@ -26,13 +23,6 @@ export function Nav(props) {
     select.value = 'Filtro';
 
   }
-
-  // useEffect(() => {
-  //   let filtro = diets && diets;
-  //   let filt = [];
-  //   filtro.forEach((d) => filt.push(d.title));
-  //   setFilter(filt);
-  // }, [diets]);
 
   function handleSort(e) {
     dispatch(sortRecipes(e.target.value));
@@ -65,10 +55,10 @@ export function Nav(props) {
           {location.pathname === '/recipes' ? <div>
             <Search />
           </div> : null}
-          <div onClick={handleCreate} className={styles.ccreate}>
+          {location.pathname === '/recipes' ? <div onClick={handleCreate} className={styles.ccreate}>
             <input placeholder="Añadir receta" disabled={true} />
             <div className={styles.create}></div>
-          </div>
+          </div> : null}
         </div>
 
         <div className={styles.center}>

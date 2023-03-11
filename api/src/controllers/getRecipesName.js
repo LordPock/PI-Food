@@ -25,7 +25,7 @@ async function search(name) {
 async function searchAPI() {
   await axios
     .get(
-      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${`API_KEY${key}`}`
+      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${eval("API_KEY" + key)}`
     )
     .then((response) => (recipe = response.data.results))
     .catch((error) => {if(error) console.log(error.response.status, API_KEY, key)});
