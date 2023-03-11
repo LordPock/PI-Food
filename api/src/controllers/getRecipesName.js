@@ -24,14 +24,15 @@ async function search(name) {
 }
 
 async function searchAPI() {
+
   const api = eval('API_KEY' + key)
-  console.log(api);
+
   await axios
     .get(
       `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${api}`
     )
     .then((response) => (recipe = response.data.results))
-    .catch((error) => {if(error) console.log(error.response.status, API_KEY, key)});
+    .catch((error) => {if(error) console.log(error.response.status, api, key)});
   return recipe;
 }
 
