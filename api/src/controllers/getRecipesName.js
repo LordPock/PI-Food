@@ -5,6 +5,7 @@ const { API_KEY } = process.env;
 
 var recipe = [];
 var key = 1
+
 async function search(name) {
   const resultAPI = await searchAPI();
   const resultDB = await searchDB();
@@ -23,9 +24,11 @@ async function search(name) {
 }
 
 async function searchAPI() {
+  const api = eval('API_KEY' + key)
+  console.log(api);
   await axios
     .get(
-      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${eval("API_KEY" + key)}`
+      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${api}`
     )
     .then((response) => (recipe = response.data.results))
     .catch((error) => {if(error) console.log(error.response.status, API_KEY, key)});
