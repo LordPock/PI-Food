@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./about.module.css";
 
 export default function About() {
@@ -8,9 +9,8 @@ const navigate = useNavigate()
 
   return (
     <div className={styles.about}>
-     <button className={styles.button} onClick={() => navigate('/recipes')} />
+    
       <div className={styles.about2}>
-      
         <h2 className={styles.h2}>PI Food</h2>
         <hr />
         <p className={styles.span}>
@@ -42,15 +42,19 @@ const navigate = useNavigate()
 
         <p className={styles.span}>De Henry, al mundo, aquí llegué.</p>
 
-        <h3>
-          <a
-            className={styles.firma}
-            href="https://www.linkedin.com/in/claudio-di-toro-13a158251/"
-            target="_blank"
-          >
-            Claudio
-          </a>
-        </h3>
+        
+        <p className={styles.firma}>Claudio</p>
+      
+          <div className={styles.about3}>
+        <Link to="https://www.linkedin.com/in/claudio-di-toro-13a158251/" target={"_blank"} rel="noreferrer">
+          <button
+            className={styles.linkedin}
+
+          ></button></Link>
+          
+          <button className={styles.button} onClick={() => navigate('/recipes')} />
+          </div>
+        
       </div>
     </div>
   );

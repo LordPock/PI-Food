@@ -11,11 +11,15 @@
   background-color: rgb(23, 33, 42);
   border-radius: 25px;
 }
-.about2 h3 {
-  transform: rotate(-10deg);
-  width: 1%;
+
+.about3 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
   position: relative;
-  left: 70%;
+
 }
 
 .h2 {
@@ -39,9 +43,10 @@
   font-size: 30px;
   color: yellow;
   text-align: right;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  width: 70%;
+  transform: rotate(-10deg);
 }
 
 .button {
@@ -55,6 +60,27 @@
   height: 60px;
   border-radius: 50%;
   position: relative;
-  left: 22%;
-  top: -70px;
+  /* left: 22%; */
+  /* top: -70px; */
+}
+.button:hover {
+  filter: drop-shadow(2px 4px 6px rgb(255, 255, 255));
+}
+
+.linkedin {
+  background-image: url("../../../public/src/linkedin.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border-color: transparent;
+  width: 60px;
+  height: 60px;
+  /* border-radius: 50%; */
+  position: relative;
+
+  cursor: pointer;
+}
+.linkedin:hover {
+  filter: drop-shadow(2px 4px 6px rgb(255, 255, 255));
 }
