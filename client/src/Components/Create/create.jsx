@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import validation from "../Validation/validation";
-import { createRecipe, emptyMessage, getRecipes } from "../../redux/actions";
+import { createRecipe, emptyDetail, emptyMessage, getRecipes } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import styles from "./create.module.css";
 
@@ -68,6 +68,7 @@ export function Create(props) {
 
   function handleReturn() {
     emptyMessage();
+    emptyDetail();
     navigate(-1);
   }
 
@@ -76,8 +77,8 @@ export function Create(props) {
   return (
     <div className={styles.recipeDetail}>
       <div className={styles.container}>
-        <button className={styles.return} onClick={handleReturn}></button>
         <form className={styles.details} onSubmit={handleSubmit}>
+        <button className={styles.return} onClick={handleReturn}></button>
           <div className={styles.first}>
             <textarea
               className={errors.title && styles.warningtextarea}
