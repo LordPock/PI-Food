@@ -76,9 +76,9 @@ export function Create(props) {
 
   return (
     <div className={styles.recipeDetail}>
+        <button className={styles.return} onClick={handleReturn}></button>
       <div className={styles.container}>
         <form className={styles.details} onSubmit={handleSubmit}>
-        <button className={styles.return} onClick={handleReturn}></button>
           <div className={styles.first}>
             <textarea
               className={errors.title && styles.warningtextarea}

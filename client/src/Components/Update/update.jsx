@@ -47,7 +47,7 @@ export function Update(props) {
       if (typeof message === "string") {
         let mensaje = message;
         alert(mensaje);
-        dispatch(emptyMessage())
+        dispatch(emptyMessage());
         dispatch(getRecipes());
         navigate("/recipes");
       } else {
@@ -79,6 +79,8 @@ export function Update(props) {
   }
 
   function handleReturn() {
+    dispatch(emptyMessage());
+    dispatch(emptyDetail());
     navigate(-1);
   }
 
@@ -134,7 +136,9 @@ export function Update(props) {
                           key={d.id}
                           id={d.id}
                           value={d.title}
-                          defaultChecked={receta.diets.some((r) => r.title === d.title)}
+                          defaultChecked={receta.diets.some(
+                            (r) => r.title === d.title
+                          )}
                         />
                         {d.title}
                       </label>
