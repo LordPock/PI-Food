@@ -41,6 +41,7 @@
     margin-left: 5px;
     width: 30px;
     height: 21px;
+    cursor: pointer;
 }
 
 .anterior {
@@ -52,6 +53,7 @@
     border-color: transparent;
     width: 30px;
     height: 21px;
+    cursor: pointer;
 }
 
 .siguiente {
@@ -63,6 +65,7 @@
     border-color: transparent;
     width: 30px;
     height: 21px;
+    cursor: pointer;
 }
 
 .ultimo {
@@ -76,6 +79,7 @@
     margin-right: 5px;
     width: 30px;
     height: 21px;
+    cursor: pointer;
 }
 
 .current {
