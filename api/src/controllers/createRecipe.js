@@ -1,5 +1,3 @@
-//require("dotenv").config();
-
 const { Recipe, Diet } = require("../db");
 
 async function createRecipe({

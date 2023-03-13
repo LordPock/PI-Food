@@ -1,22 +1,11 @@
 .div {
-  /* background-image: url("../../../public/src/recipe.jpg"); */
-  /* background-size: 33em; */
-  /* background-repeat: no-repeat; */
-  /* background-position: center; */
   width: 500px;
   height: 350px;
   display: flex;
-  /* border-color: black; */
-  /* border-style: double; */
-  /* position: relative; */
-  /* margin: 15px; */
   justify-content: center;
-  /* align-items: center; */
-  /* flex-direction: column; */
 }
 
 .luis {
-  /* filter: drop-shadow(2px 4px 6px rgba(0, 0, 0)); */
   transform-style: preserve-3d;
   transition: 1s ease;
   width: 50%;
@@ -66,7 +55,6 @@
 
 .img {
   width: 180px;
-  /* height: 180px; */
   left: 5px;
   position: relative;
   border-color: black;
@@ -123,14 +111,12 @@
   width: 75%;
   position: relative;
   left: 20px;
-  /* text-align: start; */
 }
 
 .diet {
   width: 75%;
   position: relative;
   left: 20px;
-  /* text-align: start; */
 }
 
 .luis:hover {
@@ -146,7 +132,6 @@
   justify-content: space-evenly;
   position: relative;
   left: 109px;
-  /* bottom: 7px; */
   cursor: pointer;
   text-align: justify;
   width: 45%;

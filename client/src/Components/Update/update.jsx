@@ -33,11 +33,6 @@ export function Update(props) {
     }
   }, [detail]);
 
-  function handleVolver() {
-    props.emptyDetail();
-    navigate("/recipes");
-  }
-
   const [errors, setErrors] = useState({
     title: null,
     image: null,

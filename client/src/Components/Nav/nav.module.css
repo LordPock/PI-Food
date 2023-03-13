@@ -1,5 +1,4 @@
 .nav {
-  /* background-color: rgba(0, 0, 0, 0.1); */
   background-image: url("../../../public/src/fondonav.png");
   background-size: contain;
   background-repeat: repeat;
@@ -79,7 +78,6 @@
 }
 
 .ccreate option {
-  /* background: transparent; */
   border: 0;
   max-width: 0;
   padding: 0;

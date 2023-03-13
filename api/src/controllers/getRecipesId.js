@@ -46,11 +46,6 @@ async function searchId(id) {
       },
     });
 
-    // let objArray = resultado?.dataValues?.diets?.map(d =>{
-    //   return d.title
-    // })
-    // resultado.dataValues.diets = objArray
-
     if (!resultado) throw new Error(`No existen recetas con ID ${id}`);
     return resultado;
   }
