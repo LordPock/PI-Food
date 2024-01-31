@@ -14,7 +14,7 @@ const navigate = useNavigate()
         <h2 className={styles.h2}>PI Food</h2>
         <hr />
         <p className={styles.span}>
-          Hola, mi nombre es Claudio, este Proyecto Individual fue realizada
+          Hola, mi nombre es Claudio soy el hermano de maxi, este Proyecto Individual fue realizada
           como parte del LABS de{" "}
           <a
             className={styles.link}
