@@ -10,12 +10,12 @@ const dispatch = useDispatch()
 
   function handleClick() {
     dispatch(getRecipes());
-    dispatch(addDiets());
+    dispatch( ());
   }
   return (
     <div className={styles.home}>
       <Link to={'/recipes'} onClick={handleClick}>
-    <img src='src/landing.png' alt=''/>
+    <img src='src/landing.avif' alt=''/>
     </Link>
     </div>
   );
