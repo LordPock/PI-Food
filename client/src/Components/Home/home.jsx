@@ -10,7 +10,7 @@ const dispatch = useDispatch()
 
   function handleClick() {
     dispatch(getRecipes());
-    dispatch( ());
+    dispatch(addDiets());
   }
   return (
     <div className={styles.home}>
